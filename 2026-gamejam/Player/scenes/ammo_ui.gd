@@ -1,3 +1,3 @@
 extends RichTextLabel
 func update(value):
-	text=str(value)
+	text="ammo:"+str(value)

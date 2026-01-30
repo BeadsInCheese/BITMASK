@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://cimaagh4xmyhk"]
 
 [ext_resource type="Script" uid="uid://br1a1asx4ec4q" path="res://bullet/scripts/bullet_collition_particles.gd" id="1_diboj"]
-[ext_resource type="Texture2D" uid="uid://dnh81sx7dw5k8" path="res://icon.svg" id="1_ot2qh"]
+[ext_resource type="Texture2D" uid="uid://ccbrdhm7uepwr" path="res://bullet/gfx/particle.png" id="1_ot2qh"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_diboj"]
 particle_flag_disable_z = true
 initial_velocity_min = 326.99
 initial_velocity_max = 326.99
 gravity = Vector3(0, 0, 0)
-scale_min = 0.099999994
-scale_max = 0.099999994
+scale_min = 0.0
+scale_max = 0.5
 collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.47
