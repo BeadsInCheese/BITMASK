@@ -1,20 +1,7 @@
 [gd_scene format=3 uid="uid://c4l68jdmp6bcj"]
 
 [ext_resource type="PackedScene" uid="uid://bmyvgox58sbe0" path="res://Player/scenes/player.tscn" id="1_80nbo"]
-[ext_resource type="Texture2D" uid="uid://36hv3v87siys" path="res://test_dummy/gfx/dummy_topdown.png" id="2_e2o6t"]
-[ext_resource type="Script" uid="uid://pnsv1vruhbv5" path="res://common/scripts/hp_system.gd" id="2_feb5d"]
-[ext_resource type="Shader" uid="uid://cyh3ailjggp85" path="res://test_dummy/shaders/hit_flash.gdshader" id="3_fc0e3"]
-[ext_resource type="Script" uid="uid://rjoquxj1r8v5" path="res://test_dummy/scripts/hitflash.gd" id="5_7jktm"]
-[ext_resource type="Script" uid="uid://4sy2e5o7hqcr" path="res://test_dummy/scripts/damage_text_spawner.gd" id="6_ryrav"]
-[ext_resource type="PackedScene" uid="uid://bu3l08h5nieyp" path="res://test_dummy/damage_number/scenes/damage_number.tscn" id="7_eow3j"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_feb5d"]
-radius = 9.055386
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7jktm"]
-resource_local_to_scene = true
-shader = ExtResource("3_fc0e3")
-shader_parameter/flash = 0.0
+[ext_resource type="PackedScene" uid="uid://d1j6ubtchrcir" path="res://test_dummy/damage_number/scenes/test_dummy.tscn" id="2_e2o6t"]
 
 [node name="game" type="Node2D" unique_id=376564336]
 
@@ -22,22 +9,5 @@ shader_parameter/flash = 0.0
 position = Vector2(533, 297)
 shoot_offset = 94
 
-[node name="TestDummy" type="StaticBody2D" parent="." unique_id=588983525]
+[node name="TestDummy" parent="." unique_id=2032214635 instance=ExtResource("2_e2o6t")]
 position = Vector2(223, 299)
-scale = Vector2(9.53, 9.53)
-script = ExtResource("2_feb5d")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestDummy" unique_id=68234733]
-shape = SubResource("CircleShape2D_feb5d")
-
-[node name="Sprite2D" type="Sprite2D" parent="TestDummy" unique_id=1392155]
-material = SubResource("ShaderMaterial_7jktm")
-texture = ExtResource("2_e2o6t")
-script = ExtResource("5_7jktm")
-
-[node name="DamageTextSpawner" type="Node2D" parent="TestDummy" unique_id=145508733]
-script = ExtResource("6_ryrav")
-damage_text_base = ExtResource("7_eow3j")
-
-[connection signal="damage_taken" from="TestDummy" to="TestDummy/Sprite2D" method="hit_flash"]
-[connection signal="damage_taken" from="TestDummy" to="TestDummy/DamageTextSpawner" method="create_text"]

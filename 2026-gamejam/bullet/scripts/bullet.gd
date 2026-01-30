@@ -7,10 +7,12 @@ var damage=1
 func _ready() -> void:
 	for modifier in modifiers:
 		modifier.on_ready(self)
+	rotation=-atan2(direction.x,direction.y)
 	
 	
 func _process(delta: float) -> void:
 	linear_velocity=direction*speed
+	rotation=-atan2(direction.x,direction.y)
 	move_and_collide(linear_velocity)
 
 
