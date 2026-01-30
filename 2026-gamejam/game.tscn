@@ -2,8 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://bmyvgox58sbe0" path="res://Player/scenes/player.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://d1j6ubtchrcir" path="res://test_dummy/damage_number/scenes/test_dummy.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://k7deqhlp3ab1" path="res://levels/scenes/level1.tscn" id="3_feb5d"]
 
 [node name="game" type="Node2D" unique_id=376564336]
+
+[node name="Level" parent="." unique_id=373504876 instance=ExtResource("3_feb5d")]
 
 [node name="Player" parent="." unique_id=449410140 instance=ExtResource("1_80nbo")]
 position = Vector2(533, 297)
