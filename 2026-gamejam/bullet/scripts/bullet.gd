@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends CharacterBody2D
 var direction:Vector2
 var speed=40
 var damage=1
@@ -11,16 +11,16 @@ func _ready() -> void:
 	
 	
 func _process(delta: float) -> void:
-	linear_velocity=direction*speed
 	rotation=-atan2(direction.x,direction.y)
-	move_and_collide(linear_velocity)
-
+	var collision_info = move_and_collide(direction*speed)
+	if(collision_info):
+		on_collision(collision_info.get_collider())
 
 func _on_kill_timer_timeout() -> void:
 	queue_free()
 
 
-func on_collision(body: Node) -> void:
+func on_collision(body) -> void:
 	for modifier in modifiers:
 		modifier.on_collision(self,body)
 	body.take_damage(damage)
