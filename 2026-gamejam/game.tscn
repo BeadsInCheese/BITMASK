@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c4l68jdmp6bcj"]
 
 [ext_resource type="PackedScene" uid="uid://bmyvgox58sbe0" path="res://Player/scenes/player.tscn" id="1_80nbo"]
-[ext_resource type="PackedScene" uid="uid://d1j6ubtchrcir" path="res://test_dummy/damage_number/scenes/test_dummy.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://de26ufwnc6i6t" path="res://test_dummy/damage_number/scenes/test_dummy.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://k7deqhlp3ab1" path="res://levels/scenes/level1.tscn" id="3_feb5d"]
 
 [node name="game" type="Node2D" unique_id=376564336]
@@ -10,7 +10,10 @@
 
 [node name="Player" parent="." unique_id=449410140 instance=ExtResource("1_80nbo")]
 position = Vector2(533, 297)
-shoot_offset = 94
+shoot_offset = 20
 
 [node name="TestDummy" parent="." unique_id=2032214635 instance=ExtResource("2_e2o6t")]
-position = Vector2(223, 299)
+position = Vector2(214.00002, 269)
+
+[node name="TestDummy2" parent="." unique_id=1327277625 instance=ExtResource("2_e2o6t")]
+position = Vector2(710, 484)

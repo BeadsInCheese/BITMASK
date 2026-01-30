@@ -9,8 +9,9 @@
 radius = 51.24451
 
 [node name="Player" type="CharacterBody2D" unique_id=449410140]
+scale = Vector2(0.25, 0.25)
 script = ExtResource("1_wmpps")
-speed = 8
+speed = 4
 bullet_base = ExtResource("2_ekj7i")
 
 [node name="Graphics" type="Sprite2D" parent="." unique_id=18194606]
@@ -26,5 +27,6 @@ wait_time = 0.13
 stream = ExtResource("4_ekj7i")
 volume_db = -17.79
 pitch_scale = 1.01
+bus = &"sfx"
 
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

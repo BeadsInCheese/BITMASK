@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://d1j6ubtchrcir"]
+[gd_scene format=3 uid="uid://de26ufwnc6i6t"]
 
 [ext_resource type="Script" uid="uid://pnsv1vruhbv5" path="res://common/scripts/hp_system.gd" id="1_1ijx0"]
 [ext_resource type="Shader" uid="uid://cyh3ailjggp85" path="res://test_dummy/shaders/hit_flash.gdshader" id="2_8pl45"]
 [ext_resource type="Texture2D" uid="uid://36hv3v87siys" path="res://test_dummy/gfx/dummy_topdown.png" id="3_e7dwp"]
 [ext_resource type="Script" uid="uid://rjoquxj1r8v5" path="res://test_dummy/scripts/hitflash.gd" id="4_lqx22"]
-[ext_resource type="Script" uid="uid://4sy2e5o7hqcr" path="res://test_dummy/scripts/damage_text_spawner.gd" id="5_fgxxf"]
+[ext_resource type="Script" path="res://test_dummy/scripts/damage_text_spawner.gd" id="5_fgxxf"]
 [ext_resource type="PackedScene" uid="uid://bu3l08h5nieyp" path="res://test_dummy/damage_number/scenes/damage_number.tscn" id="6_y2tq8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_feb5d"]
@@ -16,7 +16,7 @@ shader = ExtResource("2_8pl45")
 shader_parameter/flash = 0.0
 
 [node name="TestDummy" type="StaticBody2D" unique_id=2032214635]
-scale = Vector2(9.53, 9.53)
+scale = Vector2(2.5, 2.5)
 script = ExtResource("1_1ijx0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=380022771]

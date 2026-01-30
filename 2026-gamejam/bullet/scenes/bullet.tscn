@@ -13,6 +13,7 @@ metadata/_custom_type_script = "uid://ccj6btntd07nb"
 [sub_resource type="CircleShape2D" id="CircleShape2D_ga78h"]
 
 [node name="Bullet" type="CharacterBody2D" unique_id=701761823]
+scale = Vector2(0.25, 0.25)
 collision_layer = 2
 script = ExtResource("1_ga78h")
 modifiers = Array[ExtResource("2_8jwam")]([SubResource("Resource_i6s7h")])
