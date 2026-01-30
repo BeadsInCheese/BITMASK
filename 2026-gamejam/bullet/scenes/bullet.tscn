@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bd1cfw85jvsfn" path="res://bullet/gfx/temp bullet.png" id="1_ay61v"]
 [ext_resource type="Script" uid="uid://b837v4dif431v" path="res://bullet/scripts/bullet.gd" id="1_ga78h"]
 [ext_resource type="Script" uid="uid://dkw8krk2e8taq" path="res://bullet/modifiers/scripts/bullet_modifier.gd" id="2_8jwam"]
+[ext_resource type="PackedScene" uid="uid://cimaagh4xmyhk" path="res://bullet/scenes/particle_effect.tscn" id="2_i6s7h"]
 [ext_resource type="Script" uid="uid://ccj6btntd07nb" path="res://bullet/modifiers/scripts/damage_additive.gd" id="3_uin78"]
 
 [sub_resource type="Resource" id="Resource_i6s7h"]
@@ -16,6 +17,7 @@ metadata/_custom_type_script = "uid://ccj6btntd07nb"
 scale = Vector2(0.25, 0.25)
 collision_layer = 2
 script = ExtResource("1_ga78h")
+collision_particle_effect = ExtResource("2_i6s7h")
 modifiers = Array[ExtResource("2_8jwam")]([SubResource("Resource_i6s7h")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1809754737]

@@ -1,4 +1,5 @@
 extends CharacterBody2D
+@export var collision_particle_effect:PackedScene
 var direction:Vector2
 var speed=10
 var damage=1
@@ -24,6 +25,10 @@ func _on_kill_timer_timeout() -> void:
 func on_collision(body,normal) -> void:
 	for modifier in modifiers:
 		modifier.on_collision(self,body)
+	var particle_effect=collision_particle_effect.instantiate()
+	particle_effect.global_position=global_position
+	get_tree().root.add_child(particle_effect)
+	
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
 	if bounces<=0:
