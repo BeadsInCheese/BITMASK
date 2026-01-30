@@ -23,5 +23,6 @@ func _on_kill_timer_timeout() -> void:
 func on_collision(body) -> void:
 	for modifier in modifiers:
 		modifier.on_collision(self,body)
-	body.take_damage(damage)
+	if body.has_method("take_damage"):
+		body.take_damage(damage)
 	queue_free()
