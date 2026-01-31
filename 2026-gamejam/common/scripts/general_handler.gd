@@ -1,12 +1,4 @@
-extends Node2D
-
-
-func _on_button_pressed() -> void:
-	get_tree().change_scene_to_packed(load("res://game.tscn"))
-
-
-func _on_button_3_pressed() -> void:
-	get_tree().quit()
+extends Node
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Quit"):

@@ -3,6 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://bmyvgox58sbe0" path="res://Player/scenes/player.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://d1j6ubtchrcir" path="res://test_dummy/damage_number/scenes/test_dummy.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://k7deqhlp3ab1" path="res://levels/scenes/level1.tscn" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://bss2eiym8q2h6" path="res://enemy/scenes/enemy.tscn" id="4_fc0e3"]
+[ext_resource type="AudioStream" uid="uid://yjucj872g8jj" path="res://sfx/music/pt_song_epic.mp3" id="5_7jktm"]
+[ext_resource type="Script" uid="uid://7jddx6paca0m" path="res://enemy/entity_manager.gd" id="5_ryrav"]
+[ext_resource type="Script" uid="uid://bpt8wmo2cs5c3" path="res://common/scripts/general_handler.gd" id="7_eow3j"]
 
 [node name="game" type="Node2D" unique_id=376564336]
 
@@ -17,3 +21,19 @@ position = Vector2(214.00002, 269)
 
 [node name="TestDummy2" parent="." unique_id=1327277625 instance=ExtResource("2_e2o6t")]
 position = Vector2(710, 484)
+
+[node name="enemy" parent="." unique_id=1874423054 instance=ExtResource("4_fc0e3")]
+position = Vector2(761, 125)
+
+[node name="enemy2" parent="." unique_id=1953493859 instance=ExtResource("4_fc0e3")]
+position = Vector2(146, 182)
+
+[node name="EntityManager" type="Marker2D" parent="." unique_id=1341318479]
+script = ExtResource("5_ryrav")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=220265431]
+stream = ExtResource("5_7jktm")
+autoplay = true
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1531980702]
+script = ExtResource("7_eow3j")

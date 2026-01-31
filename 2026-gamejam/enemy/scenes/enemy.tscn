@@ -15,7 +15,7 @@ shader = ExtResource("3_tbjim")
 shader_parameter/flash = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtrb2"]
-size = Vector2(119.5, 111.5)
+size = Vector2(66.4375, 71.875)
 
 [node name="enemy" type="RigidBody2D" unique_id=1874423054]
 gravity_scale = 0.0
@@ -24,12 +24,12 @@ stats = ExtResource("2_kx3vi")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=344603810]
 material = SubResource("ShaderMaterial_mgbwo")
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_it1ce")
 script = ExtResource("4_aik1y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=516508176]
-position = Vector2(0, 5)
+position = Vector2(1.78125, 8)
 shape = SubResource("RectangleShape2D_qtrb2")
 
 [node name="DamageTextSpawner" type="Node2D" parent="." unique_id=66517902]
