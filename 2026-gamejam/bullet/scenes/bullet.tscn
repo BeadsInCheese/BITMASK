@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://c3e5e01lm8c5c" path="res://status_effects/scripts/status_effect.gd" id="6_wxcac"]
 [ext_resource type="Script" uid="uid://of057kc2krw" path="res://status_effects/scripts/damage_over_time.gd" id="7_wxcac"]
 [ext_resource type="Script" uid="uid://q77xpc66rc6y" path="res://status_effects/scripts/slow.gd" id="8_vsppl"]
+[ext_resource type="PackedScene" uid="uid://u7p82f5g0dj1" path="res://bullet/modifiers/scenes/explosion.tscn" id="9_rpowi"]
+[ext_resource type="Script" uid="uid://bidj3fcr8w4i3" path="res://bullet/modifiers/scripts/spawn.gd" id="10_eydr8"]
 
 [sub_resource type="Resource" id="Resource_i6s7h"]
 script = ExtResource("3_uin78")
@@ -33,6 +35,11 @@ script = ExtResource("5_wt4nh")
 statuses = Array[ExtResource("6_wxcac")]([SubResource("Resource_gjcq5"), SubResource("Resource_rpowi")])
 metadata/_custom_type_script = "uid://bvn8458mw8g1h"
 
+[sub_resource type="Resource" id="Resource_tjsd2"]
+script = ExtResource("10_eydr8")
+prefab = ExtResource("9_rpowi")
+metadata/_custom_type_script = "uid://bidj3fcr8w4i3"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_ga78h"]
 
 [sub_resource type="Theme" id="Theme_7r1dd"]
@@ -43,7 +50,7 @@ scale = Vector2(0.25, 0.25)
 collision_layer = 2
 script = ExtResource("1_ga78h")
 collision_particle_effect = ExtResource("2_i6s7h")
-modifiers = Array[ExtResource("2_8jwam")]([SubResource("Resource_i6s7h"), SubResource("Resource_vsppl")])
+modifiers = Array[ExtResource("2_8jwam")]([SubResource("Resource_i6s7h"), SubResource("Resource_vsppl"), SubResource("Resource_tjsd2")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1809754737]
 shape = SubResource("CircleShape2D_ga78h")

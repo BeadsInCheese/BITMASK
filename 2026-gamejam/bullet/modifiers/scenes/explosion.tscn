@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://u7p82f5g0dj1"]
+
+[ext_resource type="Script" uid="uid://dotglr6t0p31t" path="res://bullet/modifiers/scripts/explosion.gd" id="1_e77ja"]
+[ext_resource type="Script" uid="uid://dkw8krk2e8taq" path="res://bullet/modifiers/scripts/bullet_modifier.gd" id="2_1myla"]
+[ext_resource type="Texture2D" uid="uid://ccbrdhm7uepwr" path="res://bullet/gfx/particle.png" id="2_6p0c7"]
+[ext_resource type="Script" uid="uid://cik6mfbjhxb08" path="res://bullet/modifiers/scripts/damage.gd" id="3_1myla"]
+
+[sub_resource type="Resource" id="Resource_p02s4"]
+script = ExtResource("3_1myla")
+metadata/_custom_type_script = "uid://cik6mfbjhxb08"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1myla"]
+radius = 112.36102
+
+[sub_resource type="Curve" id="Curve_1myla"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p02s4"]
+curve = SubResource("Curve_1myla")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p02s4"]
+particle_flag_disable_z = true
+radial_velocity_min = 281.64996
+radial_velocity_max = 281.64996
+gravity = Vector3(0, 0, 0)
+damping_min = 22.617
+damping_max = 22.617
+scale_curve = SubResource("CurveTexture_p02s4")
+
+[node name="Explosion" type="Node2D" unique_id=2007778488]
+script = ExtResource("1_e77ja")
+modifiers = Array[ExtResource("2_1myla")]([SubResource("Resource_p02s4")])
+
+[node name="Area2D" type="Area2D" parent="." unique_id=92592415]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1828937729]
+shape = SubResource("CircleShape2D_1myla")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1822852265]
+amount = 17
+texture = ExtResource("2_6p0c7")
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_p02s4")
+
+[node name="Timer" type="Timer" parent="." unique_id=340941750]
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
