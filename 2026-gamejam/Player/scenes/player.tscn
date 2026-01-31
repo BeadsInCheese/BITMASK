@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://b0b2iavmpldi1" path="res://damage_number/fonts/GoogleSansCode-Regular.ttf" id="5_cgdry"]
 [ext_resource type="Script" uid="uid://b0kidk2q7wo8j" path="res://Player/scripts/hp_label.gd" id="6_obsiq"]
 [ext_resource type="Script" uid="uid://pnsv1vruhbv5" path="res://common/scripts/hp_system.gd" id="7_r6dbh"]
+[ext_resource type="Script" uid="uid://bxqmhme35bybr" path="res://Player/scripts/game_over_screen.gd" id="9_dy67d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fc0e3"]
 radius = 51.24451
@@ -62,6 +63,64 @@ theme = SubResource("Theme_r6dbh")
 text = "placeholder text"
 script = ExtResource("5_bed1q")
 
+[node name="GameOverScreen" type="CanvasLayer" parent="." unique_id=1552252529]
+visible = false
+script = ExtResource("9_dy67d")
+
+[node name="ColorRect" type="ColorRect" parent="GameOverScreen" unique_id=1475086539]
+offset_right = 1164.0
+offset_bottom = 657.0
+color = Color(0, 0, 0, 0.5254902)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GameOverScreen" unique_id=743232804]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.5
+offset_top = -52.0
+offset_right = 228.5
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 49
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TryAgainButton" type="Button" parent="GameOverScreen" unique_id=32473676]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = 53.130005
+offset_right = 50.5
+offset_bottom = 84.130005
+grow_horizontal = 2
+grow_vertical = 2
+action_mode = 0
+text = "TRY AGAIN"
+
+[node name="MainMenuButton" type="Button" parent="GameOverScreen" unique_id=1482338412]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = 89.0
+offset_right = 88.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+action_mode = 0
+text = "BACK TO MAIN MENU"
+
 [connection signal="on_ammo_changed" from="." to="HUD/RichTextLabel" method="update"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
 [connection signal="on_death" from="HPSystem" to="." method="_on_death"]
+[connection signal="pressed" from="GameOverScreen/TryAgainButton" to="GameOverScreen" method="_on_button_pressed"]
+[connection signal="pressed" from="GameOverScreen/MainMenuButton" to="GameOverScreen" method="_on_button_2_pressed"]

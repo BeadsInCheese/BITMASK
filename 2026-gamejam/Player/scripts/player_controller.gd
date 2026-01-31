@@ -68,3 +68,4 @@ func _on_cooldown_timeout() -> void:
 
 func _on_death() -> void:
 	get_tree().paused = true
+	$GameOverScreen.visible = true
