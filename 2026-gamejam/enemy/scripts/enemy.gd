@@ -19,6 +19,7 @@ func _ready() -> void:
 
 func on_collision(body,normal):
 	if body.has_method("take_damage"):
+		print(stats.ce)
 		body.take_damage(stats.ce)
 
 func _physics_process(delta: float) -> void:
