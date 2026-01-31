@@ -12,6 +12,7 @@ scale = Vector2(0.24, 0.24)
 theme = SubResource("Theme_ylcc6")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 52
 script = ExtResource("2_q77h6")
 
 [node name="Timer" type="Timer" parent="." unique_id=291215889]
