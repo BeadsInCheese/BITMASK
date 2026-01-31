@@ -2,11 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://bhfqtmxjqu7t3" path="res://enemy/gfx/Doge-Meme-PNG-Photos.png" id="1_it1ce"]
 [ext_resource type="Script" uid="uid://h1oytqmgsvkq" path="res://enemy/scripts/enemy.gd" id="1_kx3vi"]
-[ext_resource type="Resource" uid="uid://c824xtbnnpaoc" path="res://enemy/scripts/probe.tres" id="2_kx3vi"]
-[ext_resource type="Shader" uid="uid://cyh3ailjggp85" path="res://test_dummy/shaders/hit_flash.gdshader" id="3_tbjim"]
-[ext_resource type="Script" uid="uid://rjoquxj1r8v5" path="res://test_dummy/scripts/hitflash.gd" id="4_aik1y"]
-[ext_resource type="Script" uid="uid://4sy2e5o7hqcr" path="res://test_dummy/scripts/damage_text_spawner.gd" id="5_0lfw3"]
-[ext_resource type="PackedScene" uid="uid://bu3l08h5nieyp" path="res://test_dummy/damage_number/scenes/damage_number.tscn" id="6_tbjim"]
+[ext_resource type="Resource" path="res://enemy/scripts/probe.tres" id="2_mgbwo"]
+[ext_resource type="Shader" uid="uid://cyh3ailjggp85" path="res://damage_number/shaders/hit_flash.gdshader" id="3_tbjim"]
+[ext_resource type="Script" uid="uid://rjoquxj1r8v5" path="res://damage_number/scripts/hitflash.gd" id="4_aik1y"]
+[ext_resource type="Script" uid="uid://4sy2e5o7hqcr" path="res://damage_number/scripts/damage_text_spawner.gd" id="5_0lfw3"]
+[ext_resource type="PackedScene" uid="uid://bu3l08h5nieyp" path="res://damage_number/scenes/damage_number.tscn" id="6_tbjim"]
 [ext_resource type="Script" uid="uid://pnsv1vruhbv5" path="res://common/scripts/hp_system.gd" id="7_0lfw3"]
 [ext_resource type="Script" uid="uid://wdcslwxod72y" path="res://status_effects/scripts/status_system.gd" id="9_mgbwo"]
 
@@ -20,7 +20,7 @@ radius = 16.0
 
 [node name="enemy" type="CharacterBody2D" unique_id=12073678]
 script = ExtResource("1_kx3vi")
-stats = ExtResource("2_kx3vi")
+stats = ExtResource("2_mgbwo")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=344603810]
 material = SubResource("ShaderMaterial_mgbwo")
