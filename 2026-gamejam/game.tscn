@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://c4l68jdmp6bcj"]
 
 [ext_resource type="PackedScene" uid="uid://bmyvgox58sbe0" path="res://Player/scenes/player.tscn" id="1_80nbo"]
-[ext_resource type="PackedScene" uid="uid://de26ufwnc6i6t" path="res://test_dummy/damage_number/scenes/test_dummy.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://k7deqhlp3ab1" path="res://levels/scenes/level1.tscn" id="3_feb5d"]
 [ext_resource type="PackedScene" uid="uid://bss2eiym8q2h6" path="res://enemy/scenes/enemy.tscn" id="4_fc0e3"]
 [ext_resource type="AudioStream" uid="uid://yjucj872g8jj" path="res://sfx/music/pt_song_epic.mp3" id="5_7jktm"]
@@ -21,12 +20,6 @@ scale = Vector2(4, 4)
 limit_left = -20
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
-
-[node name="TestDummy" parent="." unique_id=2032214635 instance=ExtResource("2_e2o6t")]
-position = Vector2(214.00002, 269)
-
-[node name="TestDummy2" parent="." unique_id=1327277625 instance=ExtResource("2_e2o6t")]
-position = Vector2(710, 484)
 
 [node name="enemy" parent="." unique_id=1874423054 instance=ExtResource("4_fc0e3")]
 position = Vector2(761, 125)

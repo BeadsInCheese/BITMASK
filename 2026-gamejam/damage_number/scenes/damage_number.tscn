@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bu3l08h5nieyp"]
 
-[ext_resource type="FontFile" uid="uid://b0b2iavmpldi1" path="res://test_dummy/gfx/fonts/GoogleSansCode-Regular.ttf" id="1_xelkb"]
-[ext_resource type="Script" uid="uid://cnccehvr8jvf5" path="res://test_dummy/damage_number/scripts/damage_number.gd" id="2_q77h6"]
+[ext_resource type="FontFile" uid="uid://b0b2iavmpldi1" path="res://damage_number/fonts/GoogleSansCode-Regular.ttf" id="1_5lrkk"]
+[ext_resource type="Script" uid="uid://cnccehvr8jvf5" path="res://damage_number/scripts/damage_number.gd" id="2_bbent"]
 
 [sub_resource type="Theme" id="Theme_ylcc6"]
-default_font = ExtResource("1_xelkb")
+default_font = ExtResource("1_5lrkk")
 default_font_size = 18
 
 [node name="DamageNumber" type="Label" unique_id=1614061091]
@@ -13,7 +13,7 @@ theme = SubResource("Theme_ylcc6")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 52
-script = ExtResource("2_q77h6")
+script = ExtResource("2_bbent")
 
 [node name="Timer" type="Timer" parent="." unique_id=291215889]
 autostart = true
