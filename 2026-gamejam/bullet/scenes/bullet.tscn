@@ -5,13 +5,14 @@
 [ext_resource type="Script" uid="uid://dkw8krk2e8taq" path="res://bullet/modifiers/scripts/bullet_modifier.gd" id="2_8jwam"]
 [ext_resource type="PackedScene" uid="uid://cimaagh4xmyhk" path="res://bullet/scenes/particle_effect.tscn" id="2_i6s7h"]
 [ext_resource type="Script" uid="uid://ccj6btntd07nb" path="res://bullet/modifiers/scripts/damage_additive.gd" id="3_uin78"]
-[ext_resource type="Script" path="res://bullet/modifiers/scripts/apply_status.gd" id="5_wt4nh"]
+[ext_resource type="Script" uid="uid://bvn8458mw8g1h" path="res://bullet/modifiers/scripts/apply_status.gd" id="5_wt4nh"]
 [ext_resource type="FontFile" uid="uid://b0b2iavmpldi1" path="res://damage_number/fonts/GoogleSansCode-Regular.ttf" id="6_kgjhk"]
 [ext_resource type="Script" uid="uid://c3e5e01lm8c5c" path="res://status_effects/scripts/status_effect.gd" id="6_wxcac"]
 [ext_resource type="Script" uid="uid://of057kc2krw" path="res://status_effects/scripts/damage_over_time.gd" id="7_wxcac"]
 [ext_resource type="Script" uid="uid://q77xpc66rc6y" path="res://status_effects/scripts/slow.gd" id="8_vsppl"]
 [ext_resource type="PackedScene" uid="uid://u7p82f5g0dj1" path="res://bullet/modifiers/scenes/explosion.tscn" id="9_rpowi"]
 [ext_resource type="Script" uid="uid://bidj3fcr8w4i3" path="res://bullet/modifiers/scripts/spawn.gd" id="10_eydr8"]
+[ext_resource type="Script" uid="uid://kl6fobcq8hsm" path="res://bullet/modifiers/scripts/homing.gd" id="11_eydr8"]
 
 [sub_resource type="Resource" id="Resource_i6s7h"]
 script = ExtResource("3_uin78")
@@ -40,17 +41,24 @@ script = ExtResource("10_eydr8")
 prefab = ExtResource("9_rpowi")
 metadata/_custom_type_script = "uid://bidj3fcr8w4i3"
 
+[sub_resource type="Resource" id="Resource_pa47w"]
+script = ExtResource("11_eydr8")
+metadata/_custom_type_script = "uid://kl6fobcq8hsm"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_ga78h"]
 
 [sub_resource type="Theme" id="Theme_7r1dd"]
 default_font = ExtResource("6_kgjhk")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rpowi"]
+radius = 905.4943
 
 [node name="Bullet" type="CharacterBody2D" unique_id=701761823]
 scale = Vector2(0.25, 0.25)
 collision_layer = 2
 script = ExtResource("1_ga78h")
 collision_particle_effect = ExtResource("2_i6s7h")
-modifiers = Array[ExtResource("2_8jwam")]([SubResource("Resource_i6s7h"), SubResource("Resource_vsppl"), SubResource("Resource_tjsd2")])
+modifiers = Array[ExtResource("2_8jwam")]([SubResource("Resource_i6s7h"), SubResource("Resource_vsppl"), SubResource("Resource_tjsd2"), SubResource("Resource_pa47w")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1809754737]
 shape = SubResource("CircleShape2D_ga78h")
@@ -72,4 +80,12 @@ rotation = -1.5707964
 theme = SubResource("Theme_7r1dd")
 text = "virtualAllocEx"
 
+[node name="proximityField" type="Area2D" parent="." unique_id=1473975392]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="proximityField" unique_id=1864429129]
+shape = SubResource("CircleShape2D_rpowi")
+
 [connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
+[connection signal="body_entered" from="proximityField" to="." method="_on_proximity_field_body_entered"]
+[connection signal="body_exited" from="proximityField" to="." method="_on_proximity_field_body_exited"]
