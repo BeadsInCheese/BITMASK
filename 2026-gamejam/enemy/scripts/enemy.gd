@@ -11,7 +11,7 @@ func _process(delta):
 	
 	velocity.x += player.position.x - position.x
 	velocity.y += player.position.y - position.y
-	position += velocity * delta
+	move_and_collide(velocity.normalized())
 
 func take_damage(f: float):
 	get_node("HPSystem").take_damage(f)
