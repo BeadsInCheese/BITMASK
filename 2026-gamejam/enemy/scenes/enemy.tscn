@@ -8,17 +8,17 @@
 [ext_resource type="Script" uid="uid://4sy2e5o7hqcr" path="res://test_dummy/scripts/damage_text_spawner.gd" id="5_0lfw3"]
 [ext_resource type="PackedScene" uid="uid://bu3l08h5nieyp" path="res://test_dummy/damage_number/scenes/damage_number.tscn" id="6_tbjim"]
 [ext_resource type="Script" uid="uid://pnsv1vruhbv5" path="res://common/scripts/hp_system.gd" id="7_0lfw3"]
+[ext_resource type="Script" uid="uid://wdcslwxod72y" path="res://status_effects/scripts/status_system.gd" id="9_mgbwo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mgbwo"]
 resource_local_to_scene = true
 shader = ExtResource("3_tbjim")
 shader_parameter/flash = 0.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtrb2"]
-size = Vector2(66.4375, 71.875)
+[sub_resource type="CircleShape2D" id="CircleShape2D_tbjim"]
+radius = 16.0
 
-[node name="enemy" type="RigidBody2D" unique_id=1874423054]
-gravity_scale = 0.0
+[node name="enemy" type="CharacterBody2D" unique_id=12073678]
 script = ExtResource("1_kx3vi")
 stats = ExtResource("2_kx3vi")
 
@@ -30,7 +30,7 @@ script = ExtResource("4_aik1y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=516508176]
 position = Vector2(1.78125, 8)
-shape = SubResource("RectangleShape2D_qtrb2")
+shape = SubResource("CircleShape2D_tbjim")
 
 [node name="DamageTextSpawner" type="Node2D" parent="." unique_id=66517902]
 script = ExtResource("5_0lfw3")
@@ -39,6 +39,14 @@ damage_text_base = ExtResource("6_tbjim")
 [node name="HPSystem" type="Node2D" parent="." unique_id=1356810606]
 script = ExtResource("7_0lfw3")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1384527015]
+radius = 16.0
+
+[node name="StatusSystem" type="Node" parent="." unique_id=1600572096]
+script = ExtResource("9_mgbwo")
+
 [connection signal="damage_taken" from="HPSystem" to="Sprite2D" method="hit_flash"]
 [connection signal="damage_taken" from="HPSystem" to="DamageTextSpawner" method="create_text"]
 [connection signal="on_death" from="HPSystem" to="." method="_on_enemy_death"]
+[connection signal="change_speed_mult" from="StatusSystem" to="." method="modify_speed"]
+[connection signal="take_damage" from="StatusSystem" to="." method="take_damage"]

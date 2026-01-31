@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://clc0yh7uqloui" path="res://Player/gfx/player_spritev1.png" id="3_cgdry"]
 [ext_resource type="AudioStream" uid="uid://br0a3o81yy3pq" path="res://sfx/shoot1.wav" id="4_ekj7i"]
 [ext_resource type="Script" path="res://Player/scenes/ammo_ui.gd" id="5_bed1q"]
-[ext_resource type="FontFile" uid="uid://b0b2iavmpldi1" path="res://test_dummy/gfx/fonts/GoogleSansCode-Regular.ttf" id="5_cgdry"]
+[ext_resource type="FontFile" uid="uid://b0b2iavmpldi1" path="res://damage_number/fonts/GoogleSansCode-Regular.ttf" id="5_cgdry"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fc0e3"]
 radius = 51.24451
@@ -15,8 +15,9 @@ default_font = ExtResource("5_cgdry")
 
 [node name="Player" type="CharacterBody2D" unique_id=449410140]
 scale = Vector2(0.25, 0.25)
+motion_mode = 1
 script = ExtResource("1_wmpps")
-speed = 4
+speed = 300
 bullet_base = ExtResource("2_ekj7i")
 
 [node name="Graphics" type="Sprite2D" parent="." unique_id=18194606]
@@ -35,7 +36,6 @@ pitch_scale = 1.01
 bus = &"sfx"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=261998800]
-follow_viewport_enabled = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=774023699]
 offset_left = 875.0

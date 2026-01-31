@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://c4l68jdmp6bcj"]
 
 [ext_resource type="PackedScene" uid="uid://bmyvgox58sbe0" path="res://Player/scenes/player.tscn" id="1_80nbo"]
-[ext_resource type="PackedScene" uid="uid://d1j6ubtchrcir" path="res://test_dummy/damage_number/scenes/test_dummy.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://k7deqhlp3ab1" path="res://levels/scenes/level1.tscn" id="3_feb5d"]
 [ext_resource type="PackedScene" uid="uid://bss2eiym8q2h6" path="res://enemy/scenes/enemy.tscn" id="4_fc0e3"]
 [ext_resource type="AudioStream" uid="uid://yjucj872g8jj" path="res://sfx/music/pt_song_epic.mp3" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://7jddx6paca0m" path="res://enemy/entity_manager.gd" id="5_ryrav"]
-[ext_resource type="Script" uid="uid://bpt8wmo2cs5c3" path="res://common/scripts/general_handler.gd" id="7_eow3j"]
+[ext_resource type="Script" path="res://common/scripts/general_handler.gd" id="7_eow3j"]
+[ext_resource type="PackedScene" uid="uid://do8dgqm8min8h" path="res://spawner/scenes/spawner.tscn" id="7_j5wjh"]
 
 [node name="game" type="Node2D" unique_id=376564336]
 
@@ -16,11 +16,11 @@
 position = Vector2(533, 297)
 shoot_offset = 20
 
-[node name="TestDummy" parent="." unique_id=2032214635 instance=ExtResource("2_e2o6t")]
-position = Vector2(214.00002, 269)
-
-[node name="TestDummy2" parent="." unique_id=1327277625 instance=ExtResource("2_e2o6t")]
-position = Vector2(710, 484)
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=649231474]
+scale = Vector2(4, 4)
+limit_left = -20
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 
 [node name="enemy" parent="." unique_id=1874423054 instance=ExtResource("4_fc0e3")]
 position = Vector2(761, 125)
@@ -37,3 +37,12 @@ autoplay = true
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1531980702]
 script = ExtResource("7_eow3j")
+
+[node name="Spawner" parent="." unique_id=1666583375 instance=ExtResource("7_j5wjh")]
+position = Vector2(245, 734)
+
+[node name="Spawner2" parent="." unique_id=1707609483 instance=ExtResource("7_j5wjh")]
+position = Vector2(2075, 849)
+
+[node name="Spawner3" parent="." unique_id=1520931399 instance=ExtResource("7_j5wjh")]
+position = Vector2(1546, -45)

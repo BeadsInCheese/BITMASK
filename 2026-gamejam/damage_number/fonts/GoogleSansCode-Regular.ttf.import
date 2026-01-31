@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://b0b2iavmpldi1"
-path="res://.godot/imported/GoogleSansCode-Regular.ttf-8554288bc5a0d44c229c2f0d7abc7661.fontdata"
+path="res://.godot/imported/GoogleSansCode-Regular.ttf-9c671115098bd8d9a2429f174cf25ae1.fontdata"
 
 [deps]
 
-source_file="res://test_dummy/gfx/fonts/GoogleSansCode-Regular.ttf"
-dest_files=["res://.godot/imported/GoogleSansCode-Regular.ttf-8554288bc5a0d44c229c2f0d7abc7661.fontdata"]
+source_file="res://damage_number/fonts/GoogleSansCode-Regular.ttf"
+dest_files=["res://.godot/imported/GoogleSansCode-Regular.ttf-9c671115098bd8d9a2429f174cf25ae1.fontdata"]
 
 [params]
 

@@ -4,9 +4,12 @@ var direction:Vector2
 var speed=10
 var damage=1
 var bounces=2
+var bullet_spread=0.5
 
 @export var modifiers:Array[BulletModifier]
 func _ready() -> void:
+	var angle=atan2(direction.x,direction.y)+(randf()-0.5)*bullet_spread
+	direction=Vector2(sin(angle),cos(angle))
 	for modifier in modifiers:
 		modifier.on_ready(self)
 	rotation=-atan2(direction.x,direction.y)
@@ -32,6 +35,8 @@ func on_collision(body,normal) -> void:
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
 	if bounces<=0:
+		for modifier in modifiers:
+			modifier.on_destroy(self)		
 		queue_free()
 	else:
 		direction=-direction.reflect(normal)

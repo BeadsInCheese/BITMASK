@@ -15,3 +15,7 @@ func get_damage_additive():
 	
 func on_ready(bullet):
 	pass
+
+
+func on_destroy(bullet):
+	pass
