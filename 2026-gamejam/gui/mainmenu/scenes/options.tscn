@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://bjvyi5rayh264"]
+
+[ext_resource type="Script" uid="uid://viysw65fbufh" path="res://gui/mainmenu/scripts/options.gd" id="1_25eub"]
+[ext_resource type="FontFile" uid="uid://b0b2iavmpldi1" path="res://damage_number/fonts/GoogleSansCode-Regular.ttf" id="2_icrop"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_25eub"]
+color = Color(0.09614531, 0.14505845, 0.29882637, 1)
+grow_begin = 10.0
+grow_end = 10.0
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_icrop"]
+color = Color(0.22761512, 0.24154645, 0.38367343, 1)
+thickness = 5
+
+[node name="Options" type="CanvasLayer" unique_id=1598221282]
+script = ExtResource("1_25eub")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=845046604]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1963101894]
+custom_minimum_size = Vector2(2.39, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 34.0
+offset_top = 136.0
+offset_right = -815.245
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.26
+alignment = 1
+
+[node name="Back" type="Button" parent="VBoxContainer" unique_id=767942431]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_icrop")
+text = "Back"
+
+[node name="VBoxOptions" type="VBoxContainer" parent="." unique_id=1011852614]
+custom_minimum_size = Vector2(2.39, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 518.0
+offset_top = 136.0
+offset_right = -188.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.26
+alignment = 1
+
+[node name="Difficulty" type="Label" parent="VBoxOptions" unique_id=1358984671]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_icrop")
+text = "Difficulty"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxOptions" unique_id=1406688122]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_icrop")
+selected = 2
+item_count = 6
+popup/item_0/text = "NOOB"
+popup/item_0/id = 5
+popup/item_1/text = "Easy"
+popup/item_1/id = 0
+popup/item_2/text = "Normal"
+popup/item_2/id = 1
+popup/item_3/text = "Hard"
+popup/item_3/id = 2
+popup/item_4/text = "Impossible"
+popup/item_4/id = 3
+popup/item_5/text = "Actually impossible"
+popup/item_5/id = 4
+
+[node name="HSeparator1" type="HSeparator" parent="VBoxOptions" unique_id=499417326]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_25eub")
+
+[node name="VolumeLabel" type="Label" parent="VBoxOptions" unique_id=479709769]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_icrop")
+text = "Master volume"
+
+[node name="MasterVolume" type="HSlider" parent="VBoxOptions" unique_id=1608500659]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/slider = SubResource("StyleBoxLine_icrop")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="HSeparator" type="HSeparator" parent="VBoxOptions" unique_id=1100313537]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_25eub")
+
+[node name="MusicLabel" type="Label" parent="VBoxOptions" unique_id=1767362326]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_icrop")
+text = "Music volume"
+
+[node name="Music" type="HSlider" parent="VBoxOptions" unique_id=614748565]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/slider = SubResource("StyleBoxLine_icrop")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxOptions" unique_id=1154535366]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_25eub")
+
+[node name="SFXLabel" type="Label" parent="VBoxOptions" unique_id=314444246]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_icrop")
+text = "SFX volume"
+
+[node name="SFX" type="HSlider" parent="VBoxOptions" unique_id=1537138135]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/slider = SubResource("StyleBoxLine_icrop")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="VBoxOptions/MasterVolume" to="." method="_on_master_volume_changed"]
+[connection signal="value_changed" from="VBoxOptions/Music" to="." method="_on_music_volume_changed"]
+[connection signal="value_changed" from="VBoxOptions/SFX" to="." method="_on_sfx_volume_changed"]
