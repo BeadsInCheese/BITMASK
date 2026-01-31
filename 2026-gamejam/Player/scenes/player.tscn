@@ -43,19 +43,23 @@ script = ExtResource("7_r6dbh")
 [node name="HUD" type="CanvasLayer" parent="." unique_id=261998800]
 
 [node name="HpLabel" type="RichTextLabel" parent="HUD" unique_id=1651883203]
-offset_left = 880.0
-offset_top = 397.0
-offset_right = 1127.0
-offset_bottom = 529.0
+anchors_preset = -1
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 250.0
+offset_bottom = 67.0
+pivot_offset = Vector2(2.62, 3.51)
 theme = SubResource("Theme_r6dbh")
+text = "placeholder text"
 script = ExtResource("6_obsiq")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HUD" unique_id=774023699]
-offset_left = 875.0
-offset_top = 519.0
-offset_right = 1122.0
-offset_bottom = 651.0
+offset_left = 8.0
+offset_top = 30.0
+offset_right = 245.0
+offset_bottom = 108.0
 theme = SubResource("Theme_r6dbh")
+text = "placeholder text"
 script = ExtResource("5_bed1q")
 
 [connection signal="on_ammo_changed" from="." to="HUD/RichTextLabel" method="update"]

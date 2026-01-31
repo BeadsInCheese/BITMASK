@@ -13,6 +13,7 @@ signal on_ammo_changed(value)
 
 func _ready() -> void:
 	current_ammo = max_ammo
+	on_ammo_changed.emit(current_ammo)
 
 
 func reload():
