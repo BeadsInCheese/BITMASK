@@ -74,8 +74,10 @@ func drop_item(item):
 
 func _on_enemy_death() -> void:
 	var rng = randf()
+	var sum = 0
 	for loot in loot_table.entrys:
-		if loot.prob < rng:
+		sum += loot.prob
+		if sum > rng:
 			drop_item(loot.item)
 			break
 	destroyed.emit(stats.required_to_destroy)
