@@ -62,7 +62,6 @@ func _process(delta: float) -> void:
 
 
 func add_weapon_effect(effect):
-	print(effect)
 	upgrades.append(effect)
 
 
