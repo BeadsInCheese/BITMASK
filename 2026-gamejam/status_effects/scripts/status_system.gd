@@ -9,7 +9,6 @@ var tick_length=0.5
 var tick_timer=0
 
 func apply_status(status):
-	print("append satatus")
 	status.on_apply(self)
 	statuses.append([status,status.duration])
 

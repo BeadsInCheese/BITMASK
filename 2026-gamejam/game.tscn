@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://yjucj872g8jj" path="res://sfx/music/pt_song_epic.mp3" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://7jddx6paca0m" path="res://enemy/entity_manager.gd" id="5_ryrav"]
 [ext_resource type="Script" path="res://common/scripts/general_handler.gd" id="7_eow3j"]
+[ext_resource type="PackedScene" uid="uid://do8dgqm8min8h" path="res://spawner/scenes/spawner.tscn" id="7_j5wjh"]
 
 [node name="game" type="Node2D" unique_id=376564336]
 
@@ -36,3 +37,12 @@ autoplay = true
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1531980702]
 script = ExtResource("7_eow3j")
+
+[node name="Spawner" parent="." unique_id=1666583375 instance=ExtResource("7_j5wjh")]
+position = Vector2(245, 734)
+
+[node name="Spawner2" parent="." unique_id=1707609483 instance=ExtResource("7_j5wjh")]
+position = Vector2(2075, 849)
+
+[node name="Spawner3" parent="." unique_id=1520931399 instance=ExtResource("7_j5wjh")]
+position = Vector2(1546, -45)
