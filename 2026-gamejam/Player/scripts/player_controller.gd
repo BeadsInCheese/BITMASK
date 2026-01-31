@@ -13,6 +13,7 @@ signal on_ammo_changed(value)
 
 func _ready() -> void:
 	current_ammo = max_ammo
+	on_ammo_changed.emit(current_ammo)
 
 
 func reload():
@@ -67,3 +68,4 @@ func _on_cooldown_timeout() -> void:
 
 func _on_death() -> void:
 	get_tree().paused = true
+	$GameOverScreen.visible = true

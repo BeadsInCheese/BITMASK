@@ -1,3 +1,4 @@
 extends RichTextLabel
+
 func update(value):
-	text="text section memory:"+str(value)
+	text="Malicious lines: "+str(value)

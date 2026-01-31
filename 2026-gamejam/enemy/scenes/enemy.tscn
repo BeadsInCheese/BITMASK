@@ -18,6 +18,7 @@ shader_parameter/flash = 0.0
 radius = 16.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=12073678]
+collision_mask = 5
 script = ExtResource("1_kx3vi")
 stats = ExtResource("2_mgbwo")
 
