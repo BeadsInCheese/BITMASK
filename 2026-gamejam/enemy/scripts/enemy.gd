@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 var player
 @export var speed: float = 70.0
-@export var loot_table: LootTable
+var loot_table: LootTable
 signal destroyed
 
 var item_base = preload("res://item/scenes/items.tscn")
@@ -16,7 +16,7 @@ func _ready() -> void:
 	$HPSystem.current_hp = stats.max_hp
 	$Sprite2D.texture = stats.texture
 	speed = stats.speed
-
+	loot_table = stats.loot_table
 	var parent = get_parent()
 	if parent and parent.has_method("_on_enemy_destroyed"):
 		destroyed.connect(parent._on_enemy_destroyed)
