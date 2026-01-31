@@ -32,6 +32,8 @@ func on_collision(body,normal) -> void:
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
 	if bounces<=0:
+		for modifier in modifiers:
+			modifier.on_destroy(self)		
 		queue_free()
 	else:
 		direction=-direction.reflect(normal)

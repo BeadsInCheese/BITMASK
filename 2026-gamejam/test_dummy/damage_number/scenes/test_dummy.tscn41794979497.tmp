@@ -39,6 +39,5 @@ script = ExtResource("7_lqx22")
 [node name="HpSystem" type="Node" parent="." unique_id=1655210385]
 script = ExtResource("1_1ijx0")
 
-[connection signal="take_damage" from="StatusSystem" to="." method="take_damage"]
 [connection signal="damage_taken" from="HpSystem" to="Sprite2D" method="hit_flash"]
 [connection signal="damage_taken" from="HpSystem" to="DamageTextSpawner" method="create_text"]
