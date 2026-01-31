@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 @export var speed = 200
@@ -54,7 +55,15 @@ func _process(delta: float) -> void:
 	velocity = velocity.normalized() * speed
 	move_and_slide()
 	velocity = Vector2(0, 0)
-
+	
+	
+func take_damage(f: float):
+	get_node("HPSystem").take_damage(f)
+	$HUD/HpLabel.update_label()
+	print(get_node("HPSystem").current_hp)
 
 func _on_cooldown_timeout() -> void:
 	can_shoot = true
+
+func _on_death() -> void:
+	get_tree().paused = true

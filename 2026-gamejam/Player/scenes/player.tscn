@@ -4,8 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://b7o81b2iqwdkc" path="res://bullet/scenes/bullet.tscn" id="2_ekj7i"]
 [ext_resource type="Texture2D" uid="uid://clc0yh7uqloui" path="res://Player/gfx/player_spritev1.png" id="3_cgdry"]
 [ext_resource type="AudioStream" uid="uid://br0a3o81yy3pq" path="res://sfx/shoot1.wav" id="4_ekj7i"]
-[ext_resource type="Script" path="res://Player/scenes/ammo_ui.gd" id="5_bed1q"]
+[ext_resource type="Script" uid="uid://cpiatq2fgjsbh" path="res://Player/scenes/ammo_ui.gd" id="5_bed1q"]
 [ext_resource type="FontFile" uid="uid://b0b2iavmpldi1" path="res://damage_number/fonts/GoogleSansCode-Regular.ttf" id="5_cgdry"]
+[ext_resource type="Script" uid="uid://b0kidk2q7wo8j" path="res://Player/scripts/hp_label.gd" id="6_obsiq"]
+[ext_resource type="Script" uid="uid://pnsv1vruhbv5" path="res://common/scripts/hp_system.gd" id="7_r6dbh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fc0e3"]
 radius = 51.24451
@@ -20,11 +22,11 @@ script = ExtResource("1_wmpps")
 speed = 300
 bullet_base = ExtResource("2_ekj7i")
 
-[node name="Graphics" type="Sprite2D" parent="." unique_id=18194606]
-texture = ExtResource("3_cgdry")
-
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=688682804]
 shape = SubResource("CircleShape2D_fc0e3")
+
+[node name="Graphics" type="Sprite2D" parent="." unique_id=18194606]
+texture = ExtResource("3_cgdry")
 
 [node name="Cooldown" type="Timer" parent="." unique_id=1465622112]
 wait_time = 0.13
@@ -35,9 +37,20 @@ volume_db = -5.0
 pitch_scale = 1.01
 bus = &"sfx"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=261998800]
+[node name="HPSystem" type="Node2D" parent="." unique_id=2093033087]
+script = ExtResource("7_r6dbh")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=774023699]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=261998800]
+
+[node name="HpLabel" type="RichTextLabel" parent="HUD" unique_id=1651883203]
+offset_left = 880.0
+offset_top = 397.0
+offset_right = 1127.0
+offset_bottom = 529.0
+theme = SubResource("Theme_r6dbh")
+script = ExtResource("6_obsiq")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD" unique_id=774023699]
 offset_left = 875.0
 offset_top = 519.0
 offset_right = 1122.0
@@ -45,5 +58,6 @@ offset_bottom = 651.0
 theme = SubResource("Theme_r6dbh")
 script = ExtResource("5_bed1q")
 
-[connection signal="on_ammo_changed" from="." to="CanvasLayer/RichTextLabel" method="update"]
+[connection signal="on_ammo_changed" from="." to="HUD/RichTextLabel" method="update"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="on_death" from="HPSystem" to="." method="_on_death"]
