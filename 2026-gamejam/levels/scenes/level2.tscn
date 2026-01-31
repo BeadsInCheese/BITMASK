@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bsvqatjg2lc4v" path="res://levels/scripts/level.gd" id="1_6hfls"]
 [ext_resource type="Texture2D" uid="uid://b7lv3f1px4oy2" path="res://levels/gfx/tileset.png" id="2_0g67m"]
 [ext_resource type="Texture2D" uid="uid://drsy4l6tmc1ix" path="res://levels/gfx/bg.png" id="3_o7xhg"]
-[ext_resource type="Shader" uid="uid://clewtitdkhet8" path="res://levels/gfx/shaders/walls_alt.gdshader" id="4_6hfls"]
+[ext_resource type="Shader" path="res://levels/gfx/shaders/walls_alt.gdshader" id="4_6hfls"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nu5d5"]
 vertices = PackedVector2Array(16, 16, 0, 16, 0, 0, 16, 0)
@@ -339,7 +339,8 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_ibyvh"]
 tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 5
+physics_layer_0/collision_mask = 5
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "level"
 terrain_set_0/terrain_0/color = Color(0.71314573, 0.030900735, 0.2716052, 1)
