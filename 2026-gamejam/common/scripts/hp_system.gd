@@ -1,7 +1,7 @@
 extends Node
 signal damage_taken
 signal on_death
-var max_hp=1000
+var max_hp=100
 var current_hp
 func _ready() -> void:
 	current_hp=max_hp

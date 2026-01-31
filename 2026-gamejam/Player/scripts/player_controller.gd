@@ -11,7 +11,11 @@ signal on_ammo_changed(value)
 
 func _ready() -> void:
 	current_ammo=max_ammo
-
+func reload():
+	current_ammo=0
+	await get_tree().create_timer(0.5, false, false, true).timeout
+	current_ammo=max_ammo
+	on_ammo_changed.emit(current_ammo)
 func shoot(direction:Vector2):
 	if !can_shoot || current_ammo<=0:
 		return
@@ -40,6 +44,8 @@ func _process(delta: float) -> void:
 		velocity.x-=1
 	if Input.is_action_pressed("right"):
 		velocity.x+=1
+	if Input.is_action_pressed("reload"):
+		reload()
 	
 	move_and_collide(velocity.normalized()*speed)
 	velocity=Vector2(0,0)
