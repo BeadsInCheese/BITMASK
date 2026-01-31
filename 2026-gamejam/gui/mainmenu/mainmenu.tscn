@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://qtiv1aib1lc2"]
+
+[ext_resource type="Script" uid="uid://blvm5a3tj6sr6" path="res://gui/mainmenu/mainmenu.gd" id="1_i41bq"]
+[ext_resource type="Texture2D" uid="uid://ofepld5qr6u0" path="res://gui/mainmenu/Screenshot from 2026-01-31 01-23-34.png" id="2_1dyev"]
+
+[node name="Node2D" type="Node2D" unique_id=1410049563]
+script = ExtResource("1_i41bq")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1160328594]
+offset_left = 373.0
+offset_top = 59.0
+offset_right = 933.0
+offset_bottom = 566.0
+texture = ExtResource("2_1dyev")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=962805659]
+custom_minimum_size = Vector2(2.39, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 34.0
+offset_top = 136.0
+offset_right = 336.755
+offset_bottom = 615.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.26
+alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1420864812]
+layout_mode = 2
+text = "Go to game"
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=799425686]
+layout_mode = 2
+text = "Options"
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=894199797]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]

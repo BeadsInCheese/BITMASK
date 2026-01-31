@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bss2eiym8q2h6"]
+
+[ext_resource type="Texture2D" uid="uid://bhfqtmxjqu7t3" path="res://enemy/gfx/Doge-Meme-PNG-Photos.png" id="1_it1ce"]
+[ext_resource type="Script" uid="uid://h1oytqmgsvkq" path="res://enemy/scripts/enemy.gd" id="1_kx3vi"]
+[ext_resource type="Resource" uid="uid://c824xtbnnpaoc" path="res://enemy/scripts/bot_stats.tres" id="2_kx3vi"]
+[ext_resource type="Shader" uid="uid://cyh3ailjggp85" path="res://test_dummy/shaders/hit_flash.gdshader" id="3_tbjim"]
+[ext_resource type="Script" uid="uid://rjoquxj1r8v5" path="res://test_dummy/scripts/hitflash.gd" id="4_aik1y"]
+[ext_resource type="Script" uid="uid://4sy2e5o7hqcr" path="res://test_dummy/scripts/damage_text_spawner.gd" id="5_0lfw3"]
+[ext_resource type="PackedScene" uid="uid://bu3l08h5nieyp" path="res://test_dummy/damage_number/scenes/damage_number.tscn" id="6_tbjim"]
+[ext_resource type="Script" uid="uid://pnsv1vruhbv5" path="res://common/scripts/hp_system.gd" id="7_0lfw3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mgbwo"]
+resource_local_to_scene = true
+shader = ExtResource("3_tbjim")
+shader_parameter/flash = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtrb2"]
+size = Vector2(119.5, 111.5)
+
+[node name="enemy" type="RigidBody2D" unique_id=1874423054]
+gravity_scale = 0.0
+script = ExtResource("1_kx3vi")
+stats = ExtResource("2_kx3vi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=344603810]
+material = SubResource("ShaderMaterial_mgbwo")
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_it1ce")
+script = ExtResource("4_aik1y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=516508176]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_qtrb2")
+
+[node name="DamageTextSpawner" type="Node2D" parent="." unique_id=66517902]
+script = ExtResource("5_0lfw3")
+damage_text_base = ExtResource("6_tbjim")
+
+[node name="HPSystem" type="Node2D" parent="." unique_id=1356810606]
+script = ExtResource("7_0lfw3")
+
+[connection signal="damage_taken" from="HPSystem" to="Sprite2D" method="hit_flash"]
+[connection signal="damage_taken" from="HPSystem" to="DamageTextSpawner" method="create_text"]
+[connection signal="on_death" from="HPSystem" to="." method="_on_enemy_death"]
