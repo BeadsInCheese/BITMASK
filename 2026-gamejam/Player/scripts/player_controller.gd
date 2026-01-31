@@ -5,6 +5,8 @@ extends CharacterBody2D
 @export var shoot_offset = 2
 @export var bullet_base: PackedScene
 @export var max_ammo = 100
+
+var upgrades: Array[BulletModifier]
 var current_ammo
 var can_shoot = true
 signal on_out_of_ammo
@@ -33,6 +35,7 @@ func shoot(direction: Vector2):
 	can_shoot = false
 	$Cooldown.start()
 	var bullet = bullet_base.instantiate()
+	bullet.modifiers += upgrades
 	bullet.global_position = global_position + direction * shoot_offset
 	bullet.direction = direction
 	get_tree().root.add_child(bullet)
@@ -56,15 +59,22 @@ func _process(delta: float) -> void:
 	velocity = velocity.normalized() * speed
 	move_and_slide()
 	velocity = Vector2(0, 0)
-	
-	
+
+
+func add_weapon_effect(effect):
+	print(effect)
+	upgrades.append(effect)
+
+
 func take_damage(f: float):
 	get_node("HPSystem").take_damage(f)
 	$HUD/HpLabel.update_label()
 	print(get_node("HPSystem").current_hp)
 
+
 func _on_cooldown_timeout() -> void:
 	can_shoot = true
+
 
 func _on_death() -> void:
 	get_tree().paused = true
