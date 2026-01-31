@@ -2,6 +2,7 @@ class_name Enemy
 extends CharacterBody2D
 
 @export var stats: Resource
+
 var player
 @export var speed: float = 70.0
 @export var loot_table: LootTable
@@ -15,7 +16,7 @@ func _ready() -> void:
 	$HPSystem.current_hp = stats.max_hp
 	$Sprite2D.texture = stats.texture
 	speed = stats.speed
-	$Sprite2D.texture
+
 	var parent = get_parent()
 	if parent and parent.has_method("_on_enemy_destroyed"):
 		destroyed.connect(parent._on_enemy_destroyed)
@@ -23,6 +24,7 @@ func _ready() -> void:
 
 func on_collision(body, normal):
 	if body.has_method("take_damage"):
+		print(stats.ce)
 		body.take_damage(stats.ce)
 
 
