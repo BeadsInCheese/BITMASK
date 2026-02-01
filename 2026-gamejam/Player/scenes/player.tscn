@@ -6,10 +6,12 @@
 [ext_resource type="AudioStream" uid="uid://br0a3o81yy3pq" path="res://sfx/shoot1.wav" id="4_ekj7i"]
 [ext_resource type="Script" uid="uid://cpiatq2fgjsbh" path="res://Player/scenes/ammo_ui.gd" id="5_bed1q"]
 [ext_resource type="FontFile" uid="uid://b0b2iavmpldi1" path="res://damage_number/fonts/GoogleSansCode-Regular.ttf" id="5_cgdry"]
+[ext_resource type="AudioStream" uid="uid://k2qi25a0o73w" path="res://sfx/no_ammo.wav" id="5_nshua"]
 [ext_resource type="Script" uid="uid://b0kidk2q7wo8j" path="res://Player/scripts/hp_label.gd" id="6_obsiq"]
 [ext_resource type="Script" uid="uid://pnsv1vruhbv5" path="res://common/scripts/hp_system.gd" id="7_r6dbh"]
 [ext_resource type="Script" path="res://Player/scripts/time_label.gd" id="8_latqv"]
 [ext_resource type="Script" uid="uid://bxqmhme35bybr" path="res://Player/scripts/game_over_screen.gd" id="9_dy67d"]
+[ext_resource type="Script" uid="uid://wdcslwxod72y" path="res://status_effects/scripts/status_system.gd" id="12_7umw3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fc0e3"]
 radius = 51.24451
@@ -20,7 +22,7 @@ default_font = ExtResource("5_cgdry")
 [node name="Player" type="CharacterBody2D" unique_id=449410140]
 scale = Vector2(0.25, 0.25)
 collision_layer = 4
-collision_mask = 12
+collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_wmpps")
 speed = 300
@@ -39,6 +41,12 @@ wait_time = 0.13
 stream = ExtResource("4_ekj7i")
 volume_db = -5.0
 pitch_scale = 1.01
+bus = &"sfx"
+
+[node name="NoAmmoAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=2123788978]
+stream = ExtResource("5_nshua")
+volume_db = -5.0
+pitch_scale = 0.85
 bus = &"sfx"
 
 [node name="HPSystem" type="Node2D" parent="." unique_id=2093033087]
@@ -133,6 +141,9 @@ grow_horizontal = 2
 grow_vertical = 2
 action_mode = 0
 text = "BACK TO MAIN MENU"
+
+[node name="Node" type="Node" parent="." unique_id=288925110]
+script = ExtResource("12_7umw3")
 
 [connection signal="on_ammo_changed" from="." to="HUD/AmmoLabel" method="update"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

@@ -9,6 +9,7 @@ extends CharacterBody2D
 var upgrades: Array[BulletModifier]
 var current_ammo
 var can_shoot = true
+
 signal on_out_of_ammo
 signal on_ammo_changed(value)
 
@@ -17,27 +18,50 @@ func _ready() -> void:
 	current_ammo = max_ammo
 	on_ammo_changed.emit(current_ammo)
 
+	on_out_of_ammo.connect(func(): $NoAmmoAudioPlayer.play())
 
-func reload():
+
+func reload(delay: float = 0.5):
 	current_ammo = 0
-	await get_tree().create_timer(0.5, false, false, true).timeout
+	await get_tree().create_timer(delay, false, false, true).timeout
 	current_ammo = max_ammo
 	on_ammo_changed.emit(current_ammo)
 
 
+func apply_status(status):
+	$StatusSystem.apply_status(status)
+
+
 func shoot(direction: Vector2):
-	if !can_shoot || current_ammo <= 0:
+	if !can_shoot:
 		return
+
+	if current_ammo <= 0:
+		can_shoot = false
+		return
+
+	print(current_ammo)
 	current_ammo -= 1
 	on_ammo_changed.emit(current_ammo)
+
 	if (current_ammo <= 0):
 		on_out_of_ammo.emit()
+		reload(1.5)
+
 	can_shoot = false
+
 	var bullet = bullet_base.instantiate()
 	bullet.modifiers += upgrades
 	bullet.global_position = global_position + direction * shoot_offset
 	bullet.direction = direction
 	get_tree().root.add_child(bullet)
+	for i in bullet.extra_bullets:
+		var bullet2 = bullet_base.instantiate()
+		bullet2.modifiers += upgrades
+		bullet2.global_position = global_position + direction * shoot_offset
+		bullet2.direction = direction
+		get_tree().root.add_child(bullet2)
+
 	$ShootAudioPlayer.play()
 	$Cooldown.wait_time = bullet.cooldown
 	$Cooldown.start()

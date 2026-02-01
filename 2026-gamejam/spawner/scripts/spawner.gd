@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var scene_to_spawn : PackedScene
+@export var scene_to_spawn: PackedScene
 @export_range(0.0, 100.0, 0.1) var wait_time = 5.0
 
 var enemy_resources = {
@@ -8,8 +8,10 @@ var enemy_resources = {
 	"surveyor": preload("res://enemy/scripts/surveyor.tres"),
 }
 
+
 func _ready() -> void:
 	$Timer.wait_time = wait_time
+
 
 func _on_timer_timeout() -> void:
 	var scene = scene_to_spawn.instantiate()

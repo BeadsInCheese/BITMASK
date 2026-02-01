@@ -11,6 +11,7 @@ class_name ModifyStats
 @export var damage_mul = 1.0
 @export var bullet_spread_mul = 1.0
 @export var cooldown_mul = 1.0
+@export var extra_bullets_add = 0
 
 
 func on_ready(bullet):
@@ -20,3 +21,4 @@ func on_ready(bullet):
 	bullet.bounces += bounces_add
 	bullet.bullet_spread *= bullet_spread_mul
 	bullet.cooldown *= cooldown_mul
+	bullet.extra_bullets += extra_bullets_add
