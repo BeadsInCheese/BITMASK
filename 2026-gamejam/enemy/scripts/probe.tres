@@ -6,7 +6,8 @@
 
 [resource]
 script = ExtResource("2_23jir")
-max_hp = 100
+max_hp = 50
+ce = 3
 speed = 150.0
 texture = ExtResource("2_qhljw")
 loot_table = ExtResource("1_qhljw")

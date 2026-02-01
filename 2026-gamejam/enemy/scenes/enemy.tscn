@@ -58,7 +58,7 @@ wait_time = 7.0
 wait_time = 5.0
 
 [node name="Timer" type="Timer" parent="AINode" unique_id=1131899539]
-wait_time = 0.135
+wait_time = 0.26
 autostart = true
 
 [node name="HPBar" type="ProgressBar" parent="." unique_id=533674383]

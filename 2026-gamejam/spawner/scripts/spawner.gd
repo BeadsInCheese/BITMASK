@@ -6,6 +6,7 @@ extends Node2D
 var enemy_resources = {
 	"probe": preload("res://enemy/scripts/probe.tres"),
 	"surveyor": preload("res://enemy/scripts/surveyor.tres"),
+	"ocre": preload("res://enemy/scripts/ocre.tres")
 }
 
 
