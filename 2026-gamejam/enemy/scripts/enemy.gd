@@ -35,6 +35,10 @@ func on_collision(body, normal):
 		body.take_damage(stats.ce)
 
 
+func apply_force(knock_back: Vector2):
+	movement_force += knock_back
+
+
 func _physics_process(delta: float) -> void:
 	if !player:
 		return
@@ -49,13 +53,12 @@ func _physics_process(delta: float) -> void:
 	var next_path = $NavigationAgent2D.get_next_path_position()
 	var direction = (next_path - position).normalized()
 
-	var accel = 1 * max(speed - movement_force.normalized().dot(direction) * movement_force.length(), 0)
+	var accel = stats.accel * max(speed - max(movement_force.normalized().dot(direction), 0) * movement_force.length(), 0)
 
 	movement_force += direction * accel
 
 	velocity = movement_force
 	movement_force = movement_force * 0.9
-	movement_force
 	move_and_slide()
 
 	for i in get_slide_collision_count():
@@ -68,7 +71,8 @@ func _physics_process(delta: float) -> void:
 func take_damage(f: float):
 	get_node("HPSystem").take_damage(f)
 	if stats.behavior_type == 2:
-		$HPBar.value =  get_node("HPSystem").current_hp / stats.max_hp
+		$HPBar.value = get_node("HPSystem").current_hp / stats.max_hp
+
 
 func apply_status(status):
 	$StatusSystem.apply_status(status)

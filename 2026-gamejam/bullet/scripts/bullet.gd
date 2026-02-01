@@ -5,7 +5,7 @@ var direction: Vector2
 var speed = 1000
 var damage = 20
 var bounces = 0
-var knock_back = 0
+var knock_back = 600
 var bullet_spread = 0.5
 var cooldown = 0.5
 var extra_bullets = 0
@@ -49,6 +49,8 @@ func on_collision(body, normal) -> void:
 
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
+	if body.has_method("apply_force"):
+		body.apply_force(knock_back * direction)
 	if bounces <= 0:
 		for modifier in modifiers:
 			modifier.on_destroy(self)

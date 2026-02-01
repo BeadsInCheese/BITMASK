@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="LootTable" format=3 uid="uid://dpfxb5kyuj5wo"]
 
-[ext_resource type="Script" path="res://enemy/scripts/loot_table.gd" id="1_75xex"]
-[ext_resource type="Script" path="res://enemy/scripts/entry.gd" id="1_wsatr"]
+[ext_resource type="Script" uid="uid://b63i3hkj1semy" path="res://enemy/scripts/loot_table.gd" id="1_75xex"]
+[ext_resource type="Script" uid="uid://cks7faykpffxh" path="res://enemy/scripts/entry.gd" id="1_wsatr"]
 [ext_resource type="Script" uid="uid://dkw8krk2e8taq" path="res://bullet/modifiers/scripts/bullet_modifier.gd" id="2_o6jnx"]
 [ext_resource type="Script" uid="uid://ccj6btntd07nb" path="res://bullet/modifiers/scripts/damage_additive.gd" id="3_5vwud"]
 [ext_resource type="Script" uid="uid://b2qo1s3jeebak" path="res://item/scripts/item_resource.gd" id="4_tfwwr"]

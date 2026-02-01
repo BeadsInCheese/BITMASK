@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="stats" format=3 uid="uid://c824xtbnnpaoc"]
 
 [ext_resource type="Resource" uid="uid://dpfxb5kyuj5wo" path="res://enemy/loot_tables/lootTable.tres" id="1_qhljw"]
-[ext_resource type="Script" path="res://enemy/scripts/enemy_data.gd" id="2_23jir"]
+[ext_resource type="Script" uid="uid://belqso5dfrbjv" path="res://enemy/scripts/enemy_data.gd" id="2_23jir"]
 [ext_resource type="Texture2D" uid="uid://cn3xigcqd3oje" path="res://enemy/gfx/enemy2_2.png" id="2_qhljw"]
 
 [resource]
