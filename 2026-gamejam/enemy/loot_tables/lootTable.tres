@@ -1,0 +1,130 @@
+[gd_resource type="Resource" script_class="LootTable" format=3 uid="uid://dpfxb5kyuj5wo"]
+
+[ext_resource type="Script" uid="uid://b63i3hkj1semy" path="res://enemy/scripts/loot_table.gd" id="1_75xex"]
+[ext_resource type="Script" uid="uid://cks7faykpffxh" path="res://enemy/scripts/entry.gd" id="1_wsatr"]
+[ext_resource type="Script" uid="uid://dkw8krk2e8taq" path="res://bullet/modifiers/scripts/bullet_modifier.gd" id="2_o6jnx"]
+[ext_resource type="Script" uid="uid://ccj6btntd07nb" path="res://bullet/modifiers/scripts/damage_additive.gd" id="3_5vwud"]
+[ext_resource type="Script" uid="uid://b2qo1s3jeebak" path="res://item/scripts/item_resource.gd" id="4_tfwwr"]
+[ext_resource type="Texture2D" uid="uid://bd1cfw85jvsfn" path="res://bullet/gfx/temp bullet.png" id="5_7u302"]
+[ext_resource type="Resource" uid="uid://bsa7exah8cssc" path="res://bullet/modifiers/effects/overheat.tres" id="6_swg3u"]
+[ext_resource type="Resource" uid="uid://br03sp1qq827c" path="res://bullet/modifiers/effects/missile.tres" id="7_j13ep"]
+[ext_resource type="Texture2D" uid="uid://ccbrdhm7uepwr" path="res://bullet/gfx/particle.png" id="8_yefq7"]
+[ext_resource type="Resource" uid="uid://ca0rv3ll6x3gm" path="res://bullet/modifiers/effects/stun.tres" id="9_mx86c"]
+[ext_resource type="Resource" uid="uid://dodmhhq1rki6r" path="res://bullet/modifiers/effects/bounces_add.tres" id="10_mx86c"]
+[ext_resource type="Resource" uid="uid://1r37okqx7pka" path="res://bullet/modifiers/effects/fire_rate_up.tres" id="11_ij1h4"]
+[ext_resource type="Resource" uid="uid://3eywji2lybw1" path="res://bullet/modifiers/effects/spread_down.tres" id="12_dfphh"]
+[ext_resource type="Resource" uid="uid://cbkq5g57kqsjd" path="res://bullet/modifiers/effects/homing.tres" id="13_ij1h4"]
+
+[sub_resource type="Resource" id="Resource_swg3u"]
+script = ExtResource("3_5vwud")
+damage = 10.0
+metadata/_custom_type_script = "uid://ccj6btntd07nb"
+
+[sub_resource type="Resource" id="Resource_j13ep"]
+script = ExtResource("4_tfwwr")
+item_name = "damage up"
+visual = ExtResource("5_7u302")
+effects = Array[ExtResource("2_o6jnx")]([SubResource("Resource_swg3u")])
+metadata/_custom_type_script = "uid://b2qo1s3jeebak"
+
+[sub_resource type="Resource" id="Resource_waxgj"]
+script = ExtResource("1_wsatr")
+prob = 0.305
+item = SubResource("Resource_j13ep")
+metadata/_custom_type_script = "uid://cks7faykpffxh"
+
+[sub_resource type="Resource" id="Resource_ij1h4"]
+script = ExtResource("4_tfwwr")
+item_name = "overheat"
+visual = ExtResource("5_7u302")
+effects = Array[ExtResource("2_o6jnx")]([ExtResource("6_swg3u")])
+metadata/_custom_type_script = "uid://b2qo1s3jeebak"
+
+[sub_resource type="Resource" id="Resource_dfphh"]
+script = ExtResource("1_wsatr")
+prob = 0.1
+item = SubResource("Resource_ij1h4")
+metadata/_custom_type_script = "uid://cks7faykpffxh"
+
+[sub_resource type="Resource" id="Resource_0ivl1"]
+script = ExtResource("4_tfwwr")
+item_name = "missile"
+visual = ExtResource("8_yefq7")
+effects = Array[ExtResource("2_o6jnx")]([ExtResource("7_j13ep")])
+metadata/_custom_type_script = "uid://b2qo1s3jeebak"
+
+[sub_resource type="Resource" id="Resource_2xcoy"]
+script = ExtResource("1_wsatr")
+prob = 0.001
+item = SubResource("Resource_0ivl1")
+metadata/_custom_type_script = "uid://cks7faykpffxh"
+
+[sub_resource type="Resource" id="Resource_oq15w"]
+script = ExtResource("4_tfwwr")
+item_name = "stun"
+visual = ExtResource("8_yefq7")
+effects = Array[ExtResource("2_o6jnx")]([ExtResource("9_mx86c")])
+metadata/_custom_type_script = "uid://b2qo1s3jeebak"
+
+[sub_resource type="Resource" id="Resource_gfnrp"]
+script = ExtResource("1_wsatr")
+prob = 0.135
+item = SubResource("Resource_oq15w")
+metadata/_custom_type_script = "uid://cks7faykpffxh"
+
+[sub_resource type="Resource" id="Resource_s3wwk"]
+script = ExtResource("4_tfwwr")
+item_name = "bounce up"
+visual = ExtResource("8_yefq7")
+effects = Array[ExtResource("2_o6jnx")]([ExtResource("10_mx86c")])
+metadata/_custom_type_script = "uid://b2qo1s3jeebak"
+
+[sub_resource type="Resource" id="Resource_l6it6"]
+script = ExtResource("1_wsatr")
+prob = 0.13
+item = SubResource("Resource_s3wwk")
+metadata/_custom_type_script = "uid://cks7faykpffxh"
+
+[sub_resource type="Resource" id="Resource_aycfa"]
+script = ExtResource("4_tfwwr")
+item_name = "firerate up"
+visual = ExtResource("8_yefq7")
+effects = Array[ExtResource("2_o6jnx")]([ExtResource("11_ij1h4")])
+metadata/_custom_type_script = "uid://b2qo1s3jeebak"
+
+[sub_resource type="Resource" id="Resource_057vi"]
+script = ExtResource("1_wsatr")
+prob = 0.105
+item = SubResource("Resource_aycfa")
+metadata/_custom_type_script = "uid://cks7faykpffxh"
+
+[sub_resource type="Resource" id="Resource_httvm"]
+script = ExtResource("4_tfwwr")
+item_name = "spread down"
+visual = ExtResource("8_yefq7")
+effects = Array[ExtResource("2_o6jnx")]([ExtResource("12_dfphh")])
+metadata/_custom_type_script = "uid://b2qo1s3jeebak"
+
+[sub_resource type="Resource" id="Resource_wpq0r"]
+script = ExtResource("1_wsatr")
+prob = 0.17
+item = SubResource("Resource_httvm")
+metadata/_custom_type_script = "uid://cks7faykpffxh"
+
+[sub_resource type="Resource" id="Resource_56281"]
+script = ExtResource("4_tfwwr")
+item_name = "homing"
+visual = ExtResource("8_yefq7")
+effects = Array[ExtResource("2_o6jnx")]([ExtResource("13_ij1h4")])
+metadata/_custom_type_script = "uid://b2qo1s3jeebak"
+
+[sub_resource type="Resource" id="Resource_27fb2"]
+script = ExtResource("1_wsatr")
+prob = 0.001
+item = SubResource("Resource_56281")
+metadata/_custom_type_script = "uid://cks7faykpffxh"
+
+[resource]
+script = ExtResource("1_75xex")
+entrys = Array[ExtResource("1_wsatr")]([SubResource("Resource_waxgj"), SubResource("Resource_dfphh"), SubResource("Resource_2xcoy"), SubResource("Resource_gfnrp"), SubResource("Resource_l6it6"), SubResource("Resource_057vi"), SubResource("Resource_wpq0r"), SubResource("Resource_27fb2")])
+metadata/_custom_type_script = "uid://b63i3hkj1semy"

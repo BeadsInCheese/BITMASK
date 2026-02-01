@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Spawn" format=3 uid="uid://br03sp1qq827c"]
+
+[ext_resource type="Script" uid="uid://bidj3fcr8w4i3" path="res://bullet/modifiers/scripts/spawn.gd" id="1_vlvwj"]
+[ext_resource type="PackedScene" uid="uid://u7p82f5g0dj1" path="res://bullet/modifiers/scenes/explosion.tscn" id="1_x34vl"]
+
+[resource]
+script = ExtResource("1_vlvwj")
+prefab = ExtResource("1_x34vl")
+metadata/_custom_type_script = "uid://bidj3fcr8w4i3"

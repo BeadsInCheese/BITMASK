@@ -13,6 +13,8 @@ extends Resource
 var behavior_type: int
 @export var required_to_destroy: bool = false
 
+@export var loot_table: LootTable
+
 #func _init(a = 10,b = 10,r = 10,s=100):
 	#max_hp = a
 	#ce = b

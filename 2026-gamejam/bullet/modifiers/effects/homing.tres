@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Homing" format=3 uid="uid://cbkq5g57kqsjd"]
+
+[ext_resource type="Script" uid="uid://kl6fobcq8hsm" path="res://bullet/modifiers/scripts/homing.gd" id="1_tubse"]
+
+[resource]
+script = ExtResource("1_tubse")
+metadata/_custom_type_script = "uid://kl6fobcq8hsm"

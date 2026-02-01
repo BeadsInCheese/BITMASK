@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ModifyStats" format=3 uid="uid://1r37okqx7pka"]
+
+[ext_resource type="Script" uid="uid://cpim1aeu3nmju" path="res://bullet/modifiers/scripts/modify_stats.gd" id="1_fsv2k"]
+
+[resource]
+script = ExtResource("1_fsv2k")
+cooldown_mul = 0.905
+metadata/_custom_type_script = "uid://cpim1aeu3nmju"

@@ -3,10 +3,11 @@ extends CharacterBody2D
 @export var collision_particle_effect: PackedScene
 var direction: Vector2
 var speed = 10
-var damage = 1
-var bounces = 2
+var damage = 20
+var bounces = 0
+var knock_back = 0
 var bullet_spread = 0.5
-
+var cooldown = 0.5
 @export var modifiers: Array[BulletModifier]
 
 var bodies = []

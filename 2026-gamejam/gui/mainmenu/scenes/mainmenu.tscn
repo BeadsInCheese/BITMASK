@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://qtiv1aib1lc2"]
+
+[ext_resource type="Script" uid="uid://blvm5a3tj6sr6" path="res://gui/mainmenu/scripts/mainmenu.gd" id="1_45rp5"]
+[ext_resource type="Texture2D" uid="uid://ofepld5qr6u0" path="res://gui/mainmenu/gfx/Screenshot from 2026-01-31 01-23-34.png" id="2_ddf7q"]
+[ext_resource type="FontFile" uid="uid://b0b2iavmpldi1" path="res://damage_number/fonts/GoogleSansCode-Regular.ttf" id="3_ddf7q"]
+[ext_resource type="AudioStream" uid="uid://dxpwix2ufk6th" path="res://sfx/music/menu_music.mp3" id="3_oncpa"]
+
+[node name="MainMenu" type="Node2D" unique_id=1410049563]
+script = ExtResource("1_45rp5")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1160328594]
+offset_left = 373.0
+offset_top = 59.0
+offset_right = 933.0
+offset_bottom = 566.0
+texture = ExtResource("2_ddf7q")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=962805659]
+custom_minimum_size = Vector2(2.39, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 34.0
+offset_top = 136.0
+offset_right = 336.755
+offset_bottom = 615.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.26
+alignment = 1
+
+[node name="GoToGame" type="Button" parent="VBoxContainer" unique_id=1420864812]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ddf7q")
+text = "Go to game"
+
+[node name="Options" type="Button" parent="VBoxContainer" unique_id=799425686]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ddf7q")
+text = "Options"
+
+[node name="Quit" type="Button" parent="VBoxContainer" unique_id=894199797]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ddf7q")
+text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1652628776]
+stream = ExtResource("3_oncpa")
+autoplay = true
+bus = &"music"
+
+[connection signal="pressed" from="VBoxContainer/GoToGame" to="." method="_on_go_to_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

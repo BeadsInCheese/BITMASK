@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ApplyStatus" format=3 uid="uid://ca0rv3ll6x3gm"]
+
+[ext_resource type="Script" uid="uid://bvn8458mw8g1h" path="res://bullet/modifiers/scripts/apply_status.gd" id="1_on6xr"]
+[ext_resource type="Script" uid="uid://c3e5e01lm8c5c" path="res://status_effects/scripts/status_effect.gd" id="2_mmlqc"]
+[ext_resource type="Script" uid="uid://q77xpc66rc6y" path="res://status_effects/scripts/slow.gd" id="3_mmlqc"]
+
+[sub_resource type="Resource" id="Resource_lfojq"]
+script = ExtResource("3_mmlqc")
+duration = 0.3
+metadata/_custom_type_script = "uid://q77xpc66rc6y"
+
+[resource]
+script = ExtResource("1_on6xr")
+statuses = Array[ExtResource("2_mmlqc")]([SubResource("Resource_lfojq")])
+metadata/_custom_type_script = "uid://bvn8458mw8g1h"

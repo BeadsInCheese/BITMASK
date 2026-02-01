@@ -1,13 +1,20 @@
 [gd_resource type="Resource" script_class="stats" format=3 uid="uid://88nh0m0m0kd0"]
 
-[ext_resource type="Script" uid="uid://belqso5dfrbjv" path="res://enemy/scripts/new_script.gd" id="1_7dltk"]
+[ext_resource type="Script" uid="uid://cks7faykpffxh" path="res://enemy/scripts/entry.gd" id="1_kps1g"]
 [ext_resource type="Texture2D" uid="uid://bxwhl2tdcw3an" path="res://enemy/gfx/DVD_Rental_Query.png" id="2_7dltk"]
+[ext_resource type="Script" uid="uid://b63i3hkj1semy" path="res://enemy/scripts/loot_table.gd" id="2_oek36"]
+[ext_resource type="Script" uid="uid://belqso5dfrbjv" path="res://enemy/scripts/enemy_data.gd" id="3_fmc7w"]
+
+[sub_resource type="Resource" id="Resource_4aoad"]
+script = ExtResource("2_oek36")
+metadata/_custom_type_script = "uid://b63i3hkj1semy"
 
 [resource]
-script = ExtResource("1_7dltk")
+script = ExtResource("3_fmc7w")
 max_hp = 300
 speed = 17.0
 texture = ExtResource("2_7dltk")
 behavior_type = 2
 required_to_destroy = true
+loot_table = SubResource("Resource_4aoad")
 metadata/_custom_type_script = "uid://belqso5dfrbjv"

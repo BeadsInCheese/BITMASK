@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ModifyStats" format=3 uid="uid://3eywji2lybw1"]
+
+[ext_resource type="Script" uid="uid://cpim1aeu3nmju" path="res://bullet/modifiers/scripts/modify_stats.gd" id="1_gnljl"]
+
+[resource]
+script = ExtResource("1_gnljl")
+bullet_spread_mul = 0.9
+metadata/_custom_type_script = "uid://cpim1aeu3nmju"

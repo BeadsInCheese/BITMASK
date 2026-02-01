@@ -1,13 +1,15 @@
 [gd_resource type="Resource" script_class="stats" format=3 uid="uid://6ehydwdjxn8t"]
 
-[ext_resource type="Script" uid="uid://belqso5dfrbjv" path="res://enemy/scripts/new_script.gd" id="1_83g4b"]
+[ext_resource type="Resource" uid="uid://dpfxb5kyuj5wo" path="res://enemy/loot_tables/lootTable.tres" id="1_bhirs"]
+[ext_resource type="Script" uid="uid://belqso5dfrbjv" path="res://enemy/scripts/enemy_data.gd" id="2_fng1b"]
 [ext_resource type="Texture2D" uid="uid://b6r6bgiw0de6p" path="res://enemy/gfx/mine.png" id="2_pmdj3"]
 
 [resource]
-script = ExtResource("1_83g4b")
+script = ExtResource("2_fng1b")
 max_hp = 140
 ce = 10
 speed = 100.0
 texture = ExtResource("2_pmdj3")
 behavior_type = 1
+loot_table = ExtResource("1_bhirs")
 metadata/_custom_type_script = "uid://belqso5dfrbjv"

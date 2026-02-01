@@ -20,8 +20,6 @@ limit_left = -20
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
-[node name="EntityManager" type="Marker2D" parent="." unique_id=1341318479]
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=220265431]
 stream = ExtResource("5_7jktm")
 autoplay = true
