@@ -5,6 +5,10 @@
 [ext_resource type="FontFile" uid="uid://b0b2iavmpldi1" path="res://damage_number/fonts/GoogleSansCode-Regular.ttf" id="3_ddf7q"]
 [ext_resource type="AudioStream" uid="uid://dxpwix2ufk6th" path="res://sfx/music/menu_music.mp3" id="3_oncpa"]
 
+[sub_resource type="Theme" id="Theme_ddf7q"]
+default_font = ExtResource("3_ddf7q")
+default_font_size = 120
+
 [node name="MainMenu" type="Node2D" unique_id=1410049563]
 script = ExtResource("1_45rp5")
 
@@ -50,6 +54,13 @@ text = "Quit"
 stream = ExtResource("3_oncpa")
 autoplay = true
 bus = &"music"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=876380827]
+offset_right = 537.0
+offset_bottom = 228.0
+theme = SubResource("Theme_ddf7q")
+theme_override_colors/default_color = Color(0.085315324, 0.9162301, 0, 1)
+text = "BITMASK"
 
 [connection signal="pressed" from="VBoxContainer/GoToGame" to="." method="_on_go_to_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
