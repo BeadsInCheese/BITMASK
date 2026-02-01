@@ -11,6 +11,10 @@ uniform float cycle_speed;
 uniform float scroll_speed;
 uniform float scale;
 
+uniform float red;
+uniform float green;
+uniform float blue;
+
 void fragment() {
-	COLOR*=vec4(0,1,0,1)*0.8+texture(noise,fract((UV2.xy+200.)*scale+-2.*scroll_speed*TIME)).r*texture(noise,fract(UV2.xy*scale+scroll_speed*TIME)).r;
+	COLOR*=vec4(red, green, blue, 1)*0.8+texture(noise,fract((UV2.xy+200.)*scale+-2.*scroll_speed*TIME)).r*texture(noise,fract(UV2.xy*scale+scroll_speed*TIME)).r;
 }

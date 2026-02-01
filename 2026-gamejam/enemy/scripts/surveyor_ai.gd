@@ -34,6 +34,6 @@ func _on_cooldown_timer_timeout() -> void:
 
 func _on_timer_timeout() -> void:
 	if(!$ShootTimer.is_stopped()):
-		player = find_parent("Level").find_parent("game").get_node("Player")
+		player = get_parent().find_parent("game").get_node("Player")
 		velocity = player.global_position + offset - global_position
 		shoot(velocity.normalized())
