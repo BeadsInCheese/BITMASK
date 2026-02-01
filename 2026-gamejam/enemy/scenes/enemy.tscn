@@ -51,6 +51,16 @@ script = ExtResource("9_mgbwo")
 script = ExtResource("9_ap7oy")
 bullet_base = ExtResource("10_ap7oy")
 
+[node name="CooldownTimer" type="Timer" parent="AINode" unique_id=1754444864]
+wait_time = 7.0
+
+[node name="ShootTimer" type="Timer" parent="AINode" unique_id=1515355499]
+wait_time = 5.0
+
+[node name="Timer" type="Timer" parent="AINode" unique_id=1131899539]
+wait_time = 0.135
+autostart = true
+
 [node name="HPBar" type="ProgressBar" parent="." unique_id=533674383]
 visible = false
 offset_left = -28.0
@@ -58,10 +68,14 @@ offset_top = -29.0
 offset_right = 30.0
 offset_bottom = -2.0
 scale = Vector2(1.01, 0.53)
-value = 100.0
+max_value = 1.0
+value = 1.0
 
 [connection signal="damage_taken" from="HPSystem" to="Sprite2D" method="hit_flash"]
 [connection signal="damage_taken" from="HPSystem" to="DamageTextSpawner" method="create_text"]
 [connection signal="on_death" from="HPSystem" to="." method="_on_enemy_death"]
 [connection signal="change_speed_mult" from="StatusSystem" to="." method="modify_speed"]
 [connection signal="take_damage" from="StatusSystem" to="." method="take_damage"]
+[connection signal="timeout" from="AINode/CooldownTimer" to="AINode" method="_on_cooldown_timer_timeout"]
+[connection signal="timeout" from="AINode/ShootTimer" to="AINode" method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="AINode/Timer" to="AINode" method="_on_timer_timeout"]

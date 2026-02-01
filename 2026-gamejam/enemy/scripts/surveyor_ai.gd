@@ -5,24 +5,15 @@ var player
 var type = 0
 #@onready var player: CharacterBody2D = $"../Player"
 var is_cooldown = false
-var cooldown =0
+var cooldown = 5
 var burst = 50
 var velocity = Vector2()
+var offset
 
-	
-func _process(delta: float) -> void:
-	if type != 0:
-		return
-	
-	
-	player = find_parent("Level").find_parent("game").get_node("Player")
-	cooldown -= delta
-	
-	if cooldown < 0 && cooldown > -10:
-		velocity = player.global_position - global_position
-		shoot(velocity.normalized())
-	elif cooldown < -10:
-		cooldown = 5
+func _ready() -> void:
+	offset = Vector2(randf_range(-50,50),randf_range(-50,50))
+	if get_parent().stats.behavior_type == 0:
+		$ShootTimer.start()
 	
 func shoot(direction):
 	var bullet = bullet_base.instantiate()
@@ -30,3 +21,19 @@ func shoot(direction):
 	bullet.direction = direction
 	bullet.damage = get_parent().stats.bullet_dmg
 	get_tree().root.add_child(bullet)
+
+
+func _on_shoot_timer_timeout() -> void:
+	$CooldownTimer.start()
+	$ShootTimer.stop()
+
+func _on_cooldown_timer_timeout() -> void:
+	offset = Vector2(randf_range(-50,50),randf_range(-50,50))
+	$ShootTimer.start()
+	$CooldownTimer.stop()
+
+func _on_timer_timeout() -> void:
+	if(!$ShootTimer.is_stopped()):
+		player = find_parent("Level").find_parent("game").get_node("Player")
+		velocity = player.global_position + offset - global_position
+		shoot(velocity.normalized())

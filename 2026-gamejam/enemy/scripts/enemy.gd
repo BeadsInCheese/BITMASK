@@ -61,8 +61,8 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(f: float):
 	get_node("HPSystem").take_damage(f)
-	#print(get_node("HPSystem").current_hp)
-
+	if stats.behavior_type == 2:
+		$HPBar.value =  get_node("HPSystem").current_hp / stats.max_hp
 
 func apply_status(status):
 	$StatusSystem.apply_status(status)
