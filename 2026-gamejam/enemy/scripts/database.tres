@@ -7,11 +7,10 @@
 
 [sub_resource type="Resource" id="Resource_4aoad"]
 script = ExtResource("2_oek36")
-metadata/_custom_type_script = "uid://b63i3hkj1semy"
 
 [resource]
 script = ExtResource("3_fmc7w")
-max_hp = 300
+max_hp = 1000
 speed = 17.0
 texture = ExtResource("2_7dltk")
 behavior_type = 2
