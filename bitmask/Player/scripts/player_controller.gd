@@ -40,7 +40,6 @@ func shoot(direction: Vector2):
 		can_shoot = false
 		return
 
-	print(current_ammo)
 	current_ammo -= 1
 	on_ammo_changed.emit(current_ammo)
 
