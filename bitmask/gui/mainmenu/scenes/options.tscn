@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://viysw65fbufh" path="res://gui/mainmenu/scripts/options.gd" id="1_25eub"]
 [ext_resource type="FontFile" uid="uid://b0b2iavmpldi1" path="res://damage_number/fonts/GoogleSansCode-Regular.ttf" id="2_icrop"]
+[ext_resource type="Script" uid="uid://f32dkdbkehh8" path="res://gui/mainmenu/scripts/request_focus.gd" id="3_3ikec"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_25eub"]
 color = Color(0.09614531, 0.14505845, 0.29882637, 1)
@@ -41,8 +42,10 @@ alignment = 1
 
 [node name="Back" type="Button" parent="VBoxContainer" unique_id=767942431]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../VBoxOptions/OptionButton")
 theme_override_fonts/font = ExtResource("2_icrop")
 text = "Back"
+script = ExtResource("3_3ikec")
 
 [node name="VBoxOptions" type="VBoxContainer" parent="." unique_id=1011852614]
 custom_minimum_size = Vector2(2.39, 0)
@@ -67,6 +70,7 @@ text = "Difficulty"
 
 [node name="OptionButton" type="OptionButton" parent="VBoxOptions" unique_id=1406688122]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../VBoxContainer/Back")
 theme_override_fonts/font = ExtResource("2_icrop")
 selected = 2
 item_count = 6

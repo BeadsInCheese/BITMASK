@@ -12,3 +12,7 @@ func _on_button_pressed() -> void:
 func _on_button_2_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://gui/mainmenu/scenes/mainmenu.tscn")
+
+
+func _on_visibility_changed() -> void:
+	$TryAgainButton.grab_focus()

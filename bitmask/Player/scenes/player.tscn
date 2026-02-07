@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://k2qi25a0o73w" path="res://sfx/no_ammo.wav" id="5_nshua"]
 [ext_resource type="Script" uid="uid://b0kidk2q7wo8j" path="res://Player/scripts/hp_label.gd" id="6_obsiq"]
 [ext_resource type="Script" uid="uid://pnsv1vruhbv5" path="res://common/scripts/hp_system.gd" id="7_r6dbh"]
-[ext_resource type="Script" path="res://Player/scripts/time_label.gd" id="8_latqv"]
+[ext_resource type="Script" uid="uid://cn2qfpqmj3vqp" path="res://Player/scripts/time_label.gd" id="8_latqv"]
 [ext_resource type="Script" uid="uid://bxqmhme35bybr" path="res://Player/scripts/game_over_screen.gd" id="9_dy67d"]
 [ext_resource type="Script" uid="uid://wdcslwxod72y" path="res://status_effects/scripts/status_system.gd" id="12_7umw3"]
 
@@ -148,5 +148,6 @@ script = ExtResource("12_7umw3")
 [connection signal="on_ammo_changed" from="." to="HUD/AmmoLabel" method="update"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
 [connection signal="on_death" from="HPSystem" to="." method="_on_death"]
+[connection signal="visibility_changed" from="GameOverScreen" to="GameOverScreen" method="_on_visibility_changed"]
 [connection signal="pressed" from="GameOverScreen/TryAgainButton" to="GameOverScreen" method="_on_button_pressed"]
 [connection signal="pressed" from="GameOverScreen/MainMenuButton" to="GameOverScreen" method="_on_button_2_pressed"]

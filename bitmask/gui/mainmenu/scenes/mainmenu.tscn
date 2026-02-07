@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ofepld5qr6u0" path="res://gui/mainmenu/gfx/Screenshot from 2026-01-31 01-23-34.png" id="2_ddf7q"]
 [ext_resource type="FontFile" uid="uid://b0b2iavmpldi1" path="res://damage_number/fonts/GoogleSansCode-Regular.ttf" id="3_ddf7q"]
 [ext_resource type="AudioStream" uid="uid://dxpwix2ufk6th" path="res://sfx/music/menu_music.mp3" id="3_oncpa"]
+[ext_resource type="Script" uid="uid://f32dkdbkehh8" path="res://gui/mainmenu/scripts/request_focus.gd" id="4_oncpa"]
 
 [sub_resource type="Theme" id="Theme_ddf7q"]
 default_font = ExtResource("3_ddf7q")
@@ -39,6 +40,7 @@ alignment = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ddf7q")
 text = "Go to game"
+script = ExtResource("4_oncpa")
 
 [node name="Options" type="Button" parent="VBoxContainer" unique_id=799425686]
 layout_mode = 2

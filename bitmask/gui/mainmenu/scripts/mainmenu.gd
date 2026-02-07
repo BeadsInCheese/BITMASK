@@ -5,6 +5,10 @@ func _on_go_to_game_pressed() -> void:
 	get_tree().change_scene_to_packed(preload("res://game.tscn"))
 
 
+func refocus():
+	$VBoxContainer/GoToGame.grab_focus()
+
+
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 
