@@ -2,11 +2,11 @@ extends Node2D
 
 var bomb_prefab = preload("res://bomb/scenes/bomb.tscn")
 
-var max_bombs
+var max_bombs = 99
 var current_bombs = 100
 
 
-func add_bomb(amount: int):
+func add_bomb(amount):
 	if current_bombs + amount > max_bombs:
 		current_bombs = max_bombs
 	else:

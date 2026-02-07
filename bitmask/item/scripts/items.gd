@@ -8,6 +8,7 @@ extends Node2D
 func _ready() -> void:
 	$Visual.texture = item_data.visual
 	effects = item_data.effects
+	effects_on_player = item_data.effects_on_player
 
 
 func accuire(player):

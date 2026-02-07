@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cks7faykpffxh" path="res://enemy/scripts/entry.gd" id="1_wsatr"]
 [ext_resource type="Script" uid="uid://dkw8krk2e8taq" path="res://bullet/modifiers/scripts/bullet_modifier.gd" id="2_o6jnx"]
 [ext_resource type="Script" uid="uid://ccj6btntd07nb" path="res://bullet/modifiers/scripts/damage_additive.gd" id="3_5vwud"]
+[ext_resource type="Script" uid="uid://c3e5e01lm8c5c" path="res://status_effects/scripts/status_effect.gd" id="4_l6it6"]
 [ext_resource type="Script" uid="uid://b2qo1s3jeebak" path="res://item/scripts/item_resource.gd" id="4_tfwwr"]
 [ext_resource type="Texture2D" uid="uid://1aah22572hb4" path="res://item/gfx/attack_surface.png" id="5_gfnrp"]
 [ext_resource type="Resource" uid="uid://bsa7exah8cssc" path="res://bullet/modifiers/effects/overheat.tres" id="6_swg3u"]
@@ -19,6 +20,31 @@
 [ext_resource type="Resource" uid="uid://cbkq5g57kqsjd" path="res://bullet/modifiers/effects/homing.tres" id="13_ij1h4"]
 [ext_resource type="Texture2D" uid="uid://dymu0g7b3w4m7" path="res://item/gfx/over_clock.png" id="15_httvm"]
 [ext_resource type="Texture2D" uid="uid://ch0e4qoxeic83" path="res://item/gfx/EnumProcesses.png" id="17_wpq0r"]
+[ext_resource type="Script" uid="uid://d4f0le6d0ny6i" path="res://status_effects/scripts/add_consumable.gd" id="20_aycfa"]
+
+[sub_resource type="Resource" id="Resource_u1uha"]
+script = ExtResource("20_aycfa")
+bombs = 10
+metadata/_custom_type_script = "uid://d4f0le6d0ny6i"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4xiao"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6awn7"]
+width = 64
+height = 64
+noise = SubResource("FastNoiseLite_4xiao")
+
+[sub_resource type="Resource" id="Resource_nccr6"]
+script = ExtResource("4_tfwwr")
+visual = SubResource("NoiseTexture2D_6awn7")
+effects_on_player = Array[ExtResource("4_l6it6")]([SubResource("Resource_u1uha")])
+metadata/_custom_type_script = "uid://b2qo1s3jeebak"
+
+[sub_resource type="Resource" id="Resource_g7m47"]
+script = ExtResource("1_wsatr")
+prob = 0.105
+item = SubResource("Resource_nccr6")
+metadata/_custom_type_script = "uid://cks7faykpffxh"
 
 [sub_resource type="Resource" id="Resource_swg3u"]
 script = ExtResource("3_5vwud")
@@ -131,5 +157,5 @@ metadata/_custom_type_script = "uid://cks7faykpffxh"
 
 [resource]
 script = ExtResource("1_75xex")
-entrys = Array[ExtResource("1_wsatr")]([SubResource("Resource_waxgj"), SubResource("Resource_dfphh"), SubResource("Resource_2xcoy"), SubResource("Resource_gfnrp"), SubResource("Resource_l6it6"), SubResource("Resource_057vi"), SubResource("Resource_wpq0r"), SubResource("Resource_27fb2")])
+entrys = Array[ExtResource("1_wsatr")]([SubResource("Resource_g7m47"), SubResource("Resource_waxgj"), SubResource("Resource_dfphh"), SubResource("Resource_2xcoy"), SubResource("Resource_gfnrp"), SubResource("Resource_l6it6"), SubResource("Resource_057vi"), SubResource("Resource_wpq0r"), SubResource("Resource_27fb2")])
 metadata/_custom_type_script = "uid://b63i3hkj1semy"
