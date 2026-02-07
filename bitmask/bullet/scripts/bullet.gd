@@ -45,7 +45,7 @@ func on_collision(body, normal) -> void:
 		modifier.on_collision(self, body)
 	var particle_effect = collision_particle_effect.instantiate()
 	particle_effect.global_position = global_position
-	get_tree().root.add_child(particle_effect)
+	get_tree().root.get_node("game").get_child(0).add_child(particle_effect)
 
 	if body.has_method("take_damage"):
 		body.take_damage(damage)

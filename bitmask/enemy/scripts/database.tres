@@ -10,7 +10,7 @@ script = ExtResource("2_oek36")
 
 [resource]
 script = ExtResource("3_fmc7w")
-max_hp = 1000
+max_hp = 3000
 speed = 17.0
 texture = ExtResource("2_7dltk")
 behavior_type = 2

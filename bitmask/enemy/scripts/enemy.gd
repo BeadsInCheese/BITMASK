@@ -106,7 +106,7 @@ func drop_item(item):
 	var item_instance = item_base.instantiate()
 	item_instance.item_data = item
 	item_instance.global_position = global_position
-	get_tree().root.call_deferred("add_child", item_instance)
+	get_tree().root.get_node("game").get_child(0).call_deferred("add_child", item_instance)
 
 
 func _on_enemy_death() -> void:
