@@ -6,6 +6,13 @@ var max_bombs
 var current_bombs = 100
 
 
+func add_bomb(amount: int):
+	if current_bombs + amount > max_bombs:
+		current_bombs = max_bombs
+	else:
+		current_bombs += amount
+
+
 func drop_bomb():
 	if current_bombs < 1:
 		return
