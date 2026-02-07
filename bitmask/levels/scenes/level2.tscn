@@ -426,20 +426,21 @@ stats = ExtResource("8_dgll1")
 
 [node name="Spawner" parent="." unique_id=1666583375 instance=ExtResource("9_dgll1")]
 position = Vector2(66, 198)
-wait_time = 15.0
 
 [node name="Spawner2" parent="." unique_id=264102028 instance=ExtResource("9_dgll1")]
 position = Vector2(2002, 1086)
-wait_time = 15.0
 
 [node name="Spawner3" parent="." unique_id=272096734 instance=ExtResource("9_dgll1")]
 position = Vector2(1682, -258)
-wait_time = 15.0
 
 [node name="Spawner4" parent="." unique_id=350835317 instance=ExtResource("9_dgll1")]
 position = Vector2(779, -167)
-wait_time = 15.0
 
 [node name="Spawner5" parent="." unique_id=690418656 instance=ExtResource("9_dgll1")]
 position = Vector2(1105, 1152)
-wait_time = 15.0
+
+[node name="enemy" parent="." unique_id=1861432035 instance=ExtResource("7_kagfc")]
+position = Vector2(605, 155)
+
+[node name="enemy2" parent="." unique_id=956925257 instance=ExtResource("7_kagfc")]
+position = Vector2(905, 570)
