@@ -3,7 +3,7 @@ extends Node2D
 var bomb_prefab = preload("res://bomb/scenes/bomb.tscn")
 
 var max_bombs
-var current_bombs = 1
+var current_bombs = 100
 
 
 func drop_bomb():
@@ -12,7 +12,7 @@ func drop_bomb():
 	current_bombs -= 1
 	var bomb_instance = bomb_prefab.instantiate()
 	bomb_instance.global_position = global_position
-	get_tree().root.add_child(bomb_instance)
+	get_tree().root.get_node("game").get_child(0).call_deferred("add_child", bomb_instance)
 
 
 func _input(event: InputEvent) -> void:

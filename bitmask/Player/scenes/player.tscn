@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://cn2qfpqmj3vqp" path="res://Player/scripts/time_label.gd" id="8_latqv"]
 [ext_resource type="Script" uid="uid://bxqmhme35bybr" path="res://Player/scripts/game_over_screen.gd" id="9_dy67d"]
 [ext_resource type="Script" uid="uid://wdcslwxod72y" path="res://status_effects/scripts/status_system.gd" id="12_7umw3"]
-[ext_resource type="Script" uid="uid://dllwkpvjpri1l" path="res://bomb/bomb_system.gd" id="13_xty5l"]
+[ext_resource type="Script" uid="uid://dllwkpvjpri1l" path="res://bomb/scripts/bomb_system.gd" id="13_xty5l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fc0e3"]
 radius = 51.24451

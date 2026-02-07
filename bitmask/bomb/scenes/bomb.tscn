@@ -1,8 +1,16 @@
 [gd_scene format=3 uid="uid://dmxmo3dn5q6ku"]
 
+[ext_resource type="Script" uid="uid://bxlcr26xy5djv" path="res://bomb/scripts/bomb.gd" id="1_5x5ra"]
 [ext_resource type="Texture2D" uid="uid://cucnqscccach" path="res://bomb/gfx/bomb.png" id="1_bctmp"]
 
 [node name="Bomb" type="Node2D" unique_id=1579089054]
+script = ExtResource("1_5x5ra")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=998616962]
 texture = ExtResource("1_bctmp")
+
+[node name="Timer" type="Timer" parent="." unique_id=1254297837]
+wait_time = 3.0549999999999997
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="explode"]
