@@ -145,9 +145,13 @@ text = "BACK TO MAIN MENU"
 [node name="Node" type="Node" parent="." unique_id=288925110]
 script = ExtResource("12_7umw3")
 
+[node name="StaggerTimer" type="Timer" parent="." unique_id=2096601126]
+wait_time = 0.82
+
 [connection signal="on_ammo_changed" from="." to="HUD/AmmoLabel" method="update"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
 [connection signal="on_death" from="HPSystem" to="." method="_on_death"]
 [connection signal="visibility_changed" from="GameOverScreen" to="GameOverScreen" method="_on_visibility_changed"]
 [connection signal="pressed" from="GameOverScreen/TryAgainButton" to="GameOverScreen" method="_on_button_pressed"]
 [connection signal="pressed" from="GameOverScreen/MainMenuButton" to="GameOverScreen" method="_on_button_2_pressed"]
+[connection signal="timeout" from="StaggerTimer" to="." method="_on_stagger_timer_timeout"]

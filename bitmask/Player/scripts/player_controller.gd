@@ -9,6 +9,7 @@ extends CharacterBody2D
 var upgrades: Array[BulletModifier]
 var current_ammo
 var can_shoot = true
+var stagger_cooldown = false
 
 signal on_out_of_ammo
 signal on_ammo_changed(value)
@@ -91,9 +92,12 @@ func add_weapon_effect(effect):
 
 
 func take_damage(f: float):
-	get_node("HPSystem").take_damage(f)
-	$HUD/HpLabel.update_label()
-	#print(get_node("HPSystem").current_hp)
+	if !stagger_cooldown:
+		get_node("HPSystem").take_damage(f)
+		$HUD/HpLabel.update_label()
+		$StaggerTimer.start()
+		stagger_cooldown = true
+		$Collision.disabled = true
 
 
 func _on_cooldown_timeout() -> void:
@@ -103,3 +107,9 @@ func _on_cooldown_timeout() -> void:
 func _on_death() -> void:
 	get_tree().paused = true
 	$GameOverScreen.visible = true
+
+
+func _on_stagger_timer_timeout() -> void:
+	stagger_cooldown = false
+	$StaggerTimer.stop()
+	$Collision.disabled = false
