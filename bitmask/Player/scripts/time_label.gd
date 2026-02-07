@@ -1,9 +1,13 @@
 extends RichTextLabel
 
 var total_seconds: float = 0
+var running = true
 
 
 func _process(delta: float) -> void:
+	if not running:
+		return
+
 	total_seconds += delta
 	update_label()
 

@@ -15,6 +15,9 @@ func _ready() -> void:
 		if child is Enemy and child.stats.required_to_destroy:
 			databases_to_kill += 1
 
+	if next_level == null:
+		player.find_child("TimeLabel").running = false
+
 
 func go_to_next_level():
 	add_sibling(next_level.instantiate())
