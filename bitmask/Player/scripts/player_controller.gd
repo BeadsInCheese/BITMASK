@@ -89,10 +89,6 @@ func add_weapon_effect(effect):
 	upgrades.append(effect)
 
 
-func add_bomb(amount: int):
-	$BombSystem.add_bombs(amount)
-
-
 func take_damage(f: float):
 	get_node("HPSystem").take_damage(f)
 	$HUD/HpLabel.update_label()

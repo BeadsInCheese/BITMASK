@@ -127,7 +127,7 @@ text = "TRY AGAIN"
 layout_mode = 2
 text = "BACK TO MAIN MENU"
 
-[node name="Node" type="Node" parent="." unique_id=288925110]
+[node name="StatusSystem" type="Node" parent="." unique_id=288925110]
 script = ExtResource("12_7umw3")
 
 [node name="BombSystem" type="Node2D" parent="." unique_id=1276229262]
@@ -139,3 +139,4 @@ script = ExtResource("13_xty5l")
 [connection signal="visibility_changed" from="GameOverScreen" to="GameOverScreen" method="_on_visibility_changed"]
 [connection signal="pressed" from="GameOverScreen/GameOverButtons/TryAgainButton" to="GameOverScreen" method="_on_button_pressed"]
 [connection signal="pressed" from="GameOverScreen/GameOverButtons/MainMenuButton" to="GameOverScreen" method="_on_button_2_pressed"]
+[connection signal="add_bomb" from="StatusSystem" to="BombSystem" method="add_bomb"]
