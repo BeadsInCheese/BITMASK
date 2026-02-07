@@ -15,4 +15,4 @@ func _on_button_2_pressed() -> void:
 
 
 func _on_visibility_changed() -> void:
-	$TryAgainButton.grab_focus()
+	$GameOverButtons/TryAgainButton.grab_focus()

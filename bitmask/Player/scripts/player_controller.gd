@@ -53,13 +53,13 @@ func shoot(direction: Vector2):
 	bullet.modifiers += upgrades
 	bullet.global_position = global_position + direction * shoot_offset
 	bullet.direction = direction
-	get_tree().root.add_child(bullet)
+	get_tree().root.get_node("game").get_child(0).add_child(bullet)
 	for i in bullet.extra_bullets:
 		var bullet2 = bullet_base.instantiate()
 		bullet2.modifiers += upgrades
 		bullet2.global_position = global_position + direction * shoot_offset
 		bullet2.direction = direction
-		get_tree().root.add_child(bullet2)
+		get_tree().root.get_node("game").get_child(0).add_child(bullet2)
 
 	$ShootAudioPlayer.play()
 	$Cooldown.wait_time = bullet.cooldown

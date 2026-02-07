@@ -113,34 +113,18 @@ text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TryAgainButton" type="Button" parent="GameOverScreen" unique_id=32473676]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.5
-offset_top = 53.130005
-offset_right = 50.5
-offset_bottom = 84.130005
-grow_horizontal = 2
-grow_vertical = 2
-action_mode = 0
+[node name="GameOverButtons" type="VBoxContainer" parent="GameOverScreen" unique_id=1814539881]
+offset_left = 492.0
+offset_top = 400.0
+offset_right = 667.0
+offset_bottom = 466.0
+
+[node name="TryAgainButton" type="Button" parent="GameOverScreen/GameOverButtons" unique_id=32473676]
+layout_mode = 2
 text = "TRY AGAIN"
 
-[node name="MainMenuButton" type="Button" parent="GameOverScreen" unique_id=1482338412]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -87.0
-offset_top = 89.0
-offset_right = 88.0
-offset_bottom = 120.0
-grow_horizontal = 2
-grow_vertical = 2
-action_mode = 0
+[node name="MainMenuButton" type="Button" parent="GameOverScreen/GameOverButtons" unique_id=1482338412]
+layout_mode = 2
 text = "BACK TO MAIN MENU"
 
 [node name="Node" type="Node" parent="." unique_id=288925110]
@@ -153,5 +137,5 @@ script = ExtResource("13_xty5l")
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
 [connection signal="on_death" from="HPSystem" to="." method="_on_death"]
 [connection signal="visibility_changed" from="GameOverScreen" to="GameOverScreen" method="_on_visibility_changed"]
-[connection signal="pressed" from="GameOverScreen/TryAgainButton" to="GameOverScreen" method="_on_button_pressed"]
-[connection signal="pressed" from="GameOverScreen/MainMenuButton" to="GameOverScreen" method="_on_button_2_pressed"]
+[connection signal="pressed" from="GameOverScreen/GameOverButtons/TryAgainButton" to="GameOverScreen" method="_on_button_pressed"]
+[connection signal="pressed" from="GameOverScreen/GameOverButtons/MainMenuButton" to="GameOverScreen" method="_on_button_2_pressed"]
