@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ApplyStatus" format=3 uid="uid://bsa7exah8cssc"]
 
-[ext_resource type="Script" uid="uid://bvn8458mw8g1h" path="res://bullet/modifiers/scripts/apply_status.gd" id="1_61x7f"]
+[ext_resource type="Script" path="res://bullet/modifiers/scripts/apply_status.gd" id="1_61x7f"]
 [ext_resource type="Script" uid="uid://c3e5e01lm8c5c" path="res://status_effects/scripts/status_effect.gd" id="2_eo42o"]
 [ext_resource type="Script" uid="uid://of057kc2krw" path="res://status_effects/scripts/damage_over_time.gd" id="3_eo42o"]
 
