@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var collision_particle_effect: PackedScene
 var direction = Vector2()
 var speed = 400
-var damage
+var damage = 1
 
 
 func _process(delta: float) -> void:
@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 
 func on_collision(body, normal):
 	if body is Player && body.has_method("take_damage"):
-		body.take_damage(0.05)
+		body.take_damage(damage)
 	queue_free()
 
 

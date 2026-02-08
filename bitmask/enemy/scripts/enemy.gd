@@ -34,6 +34,7 @@ func _ready() -> void:
 func on_collision(body, normal):
 	if body.has_method("take_damage"):
 		body.take_damage(stats.ce)
+		set_collision_mask_value(3,false)
 
 
 func apply_force(knock_back: Vector2):
@@ -47,6 +48,8 @@ func _physics_process(delta: float) -> void:
 	if stats.behavior_type == 2: # stationary
 		return
 
+	if (player.position - global_position).length() > 360:
+		set_collision_mask_value(3,true)
 
 	velocity = target - global_position
 	var query = PhysicsRayQueryParameters2D.create(global_position, 50*velocity.normalized())

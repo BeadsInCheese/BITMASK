@@ -96,7 +96,6 @@ func take_damage(f: float):
 		$HUD/HpLabel.update_label()
 		$StaggerTimer.start()
 		stagger_cooldown = true
-		$Collision.disabled = true
 
 
 func _on_cooldown_timeout() -> void:
@@ -111,4 +110,3 @@ func _on_death() -> void:
 func _on_stagger_timer_timeout() -> void:
 	stagger_cooldown = false
 	$StaggerTimer.stop()
-	$Collision.disabled = false

@@ -20,7 +20,7 @@
 [ext_resource type="Resource" uid="uid://cbkq5g57kqsjd" path="res://bullet/modifiers/effects/homing.tres" id="13_ij1h4"]
 [ext_resource type="Texture2D" uid="uid://dymu0g7b3w4m7" path="res://item/gfx/over_clock.png" id="15_httvm"]
 [ext_resource type="Texture2D" uid="uid://ch0e4qoxeic83" path="res://item/gfx/EnumProcesses.png" id="17_wpq0r"]
-[ext_resource type="Script" uid="uid://d4f0le6d0ny6i" path="res://status_effects/scripts/add_consumable.gd" id="20_aycfa"]
+[ext_resource type="Script" path="res://status_effects/scripts/add_consumable.gd" id="20_aycfa"]
 
 [sub_resource type="Resource" id="Resource_u1uha"]
 script = ExtResource("20_aycfa")
