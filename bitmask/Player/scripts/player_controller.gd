@@ -113,3 +113,12 @@ func _on_death() -> void:
 func _on_stagger_timer_timeout() -> void:
 	stagger_cooldown = false
 	$StaggerTimer.stop()
+
+
+func display_item_accuired(name: String, description: String):
+	$HUD/ItemText.visible = true
+	$HUD/ItemText.text = "You got " + name + "\n" + description
+	await get_tree().create_timer(3).timeout
+	$HUD/ItemText.visible = false
+
+	pass

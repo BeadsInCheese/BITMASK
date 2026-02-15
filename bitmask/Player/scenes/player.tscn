@@ -20,6 +20,10 @@ radius = 51.24451
 [sub_resource type="Theme" id="Theme_r6dbh"]
 default_font = ExtResource("5_cgdry")
 
+[sub_resource type="Theme" id="Theme_xty5l"]
+default_font = ExtResource("5_cgdry")
+default_font_size = 43
+
 [node name="Player" type="CharacterBody2D" unique_id=449410140]
 scale = Vector2(0.25, 0.25)
 collision_layer = 4
@@ -86,6 +90,17 @@ theme = SubResource("Theme_r6dbh")
 text = "ammo placeholder
 "
 script = ExtResource("5_bed1q")
+
+[node name="ItemText" type="RichTextLabel" parent="HUD" unique_id=1845028444]
+visible = false
+offset_left = 217.0
+offset_top = 132.0
+offset_right = 862.0
+offset_bottom = 276.0
+theme = SubResource("Theme_xty5l")
+theme_override_colors/font_outline_color = Color(0, 0.35686275, 0, 1)
+theme_override_constants/outline_size = 6
+text = "jhkjhjhjk"
 
 [node name="GameOverScreen" type="CanvasLayer" parent="." unique_id=1552252529]
 visible = false

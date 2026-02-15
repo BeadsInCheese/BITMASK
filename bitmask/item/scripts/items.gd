@@ -28,3 +28,5 @@ func accuire(player):
 	if player.has_method("apply_status"):
 		for effect in effects_on_player:
 			player.apply_status(effect)
+	if player.has_method("display_item_accuired"):
+		player.display_item_accuired(item_data.item_name, item_data.item_description)
