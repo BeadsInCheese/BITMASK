@@ -82,6 +82,9 @@ func _process(delta: float) -> void:
 		shoot(shoot_dir.normalized())
 
 	velocity = velocity.limit_length(1) * speed
+	if abs(velocity.x) > 0 or abs(velocity.y) > 0:
+		global_rotation = lerp_angle(global_rotation, atan2(velocity.y, velocity.x), 20 * delta)
+
 	move_and_slide()
 	velocity = Vector2(0, 0)
 
