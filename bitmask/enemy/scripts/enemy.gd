@@ -80,7 +80,7 @@ func _physics_process(delta: float) -> void:
 
 		velocity = movement_force
 		movement_force = movement_force * 0.9
-		look_at(position + velocity)
+		$Sprite2D.rotation = lerp_angle($Sprite2D.rotation, atan2(velocity.y, velocity.x), 20 * delta)
 		move_and_slide()
 
 		for i in get_slide_collision_count():
