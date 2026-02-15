@@ -81,7 +81,7 @@ func _process(delta: float) -> void:
 	if (shoot_dir.length_squared() > 0):
 		shoot(shoot_dir.normalized())
 
-	velocity = velocity.normalized() * speed
+	velocity = velocity.limit_length(1) * speed
 	move_and_slide()
 	velocity = Vector2(0, 0)
 

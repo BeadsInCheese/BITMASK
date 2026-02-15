@@ -132,6 +132,7 @@ script = ExtResource("12_7umw3")
 
 [node name="StaggerTimer" type="Timer" parent="." unique_id=2096601126]
 wait_time = 0.82
+
 [node name="BombSystem" type="Node2D" parent="." unique_id=1276229262]
 script = ExtResource("13_xty5l")
 

@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="stats" format=3 uid="uid://mug1bmiho8w8"]
 
-[ext_resource type="Script" uid="uid://cks7faykpffxh" path="res://enemy/scripts/entry.gd" id="1_40kkd"]
+[ext_resource type="Script" path="res://enemy/scripts/entry.gd" id="1_40kkd"]
 [ext_resource type="Script" uid="uid://belqso5dfrbjv" path="res://enemy/scripts/enemy_data.gd" id="1_khvbg"]
-[ext_resource type="Script" uid="uid://b63i3hkj1semy" path="res://enemy/scripts/loot_table.gd" id="2_yvrfg"]
+[ext_resource type="Script" path="res://enemy/scripts/loot_table.gd" id="2_yvrfg"]
 [ext_resource type="Texture2D" uid="uid://cw255f3gtfcn3" path="res://enemy/gfx/enemy2_3.png" id="4_obbc4"]
 
 [sub_resource type="Resource" id="Resource_jcvmf"]
