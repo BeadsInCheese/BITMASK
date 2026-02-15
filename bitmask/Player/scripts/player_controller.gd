@@ -76,7 +76,7 @@ func _process(delta: float) -> void:
 		shoot(-(global_position - get_global_mouse_position()).normalized())
 	if Input.is_action_pressed("reload"):
 		reload()
-	velocity += Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
+	velocity = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
 	shoot_dir += Vector2(Input.get_axis("shoot_left", "shoot_right"), Input.get_axis("shoot_up", "shoot_down"))
 	if (shoot_dir.length_squared() > 0):
 		shoot(shoot_dir.normalized())
