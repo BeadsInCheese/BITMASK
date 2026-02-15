@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://blstic4sh1a2p"]
+
+[ext_resource type="Texture2D" uid="uid://dnh81sx7dw5k8" path="res://icon.svg" id="1_348md"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ki34v"]
+size = Vector2(32, 32)
+
+[node name="Obsticle" type="Node2D" unique_id=1056829254]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1225997193]
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=191641814]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_ki34v")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1408719177]
+position = Vector2(-9.536743e-07, -0.9999995)
+scale = Vector2(0.24999999, 0.25000003)
+texture = ExtResource("1_348md")
