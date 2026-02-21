@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://ccmvwevmjsxnu" path="res://Player/scripts/player_controller.gd" id="1_wmpps"]
 [ext_resource type="PackedScene" uid="uid://b7o81b2iqwdkc" path="res://bullet/scenes/bullet.tscn" id="2_ekj7i"]
 [ext_resource type="Texture2D" uid="uid://clc0yh7uqloui" path="res://Player/gfx/player_spritev1.png" id="3_cgdry"]
+[ext_resource type="Shader" uid="uid://cyh3ailjggp85" path="res://damage_number/shaders/hit_flash.gdshader" id="3_jkbpc"]
+[ext_resource type="Script" uid="uid://rjoquxj1r8v5" path="res://damage_number/scripts/hitflash.gd" id="4_dwsv8"]
 [ext_resource type="AudioStream" uid="uid://br0a3o81yy3pq" path="res://sfx/shoot1.wav" id="4_ekj7i"]
 [ext_resource type="Script" uid="uid://cpiatq2fgjsbh" path="res://Player/scenes/ammo_ui.gd" id="5_bed1q"]
 [ext_resource type="FontFile" uid="uid://b0b2iavmpldi1" path="res://damage_number/fonts/GoogleSansCode-Regular.ttf" id="5_cgdry"]
@@ -16,6 +18,11 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fc0e3"]
 radius = 51.24451
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dwsv8"]
+resource_local_to_scene = true
+shader = ExtResource("3_jkbpc")
+shader_parameter/flash = 0.0
 
 [sub_resource type="Theme" id="Theme_r6dbh"]
 default_font = ExtResource("5_cgdry")
@@ -33,7 +40,9 @@ bullet_base = ExtResource("2_ekj7i")
 shape = SubResource("CircleShape2D_fc0e3")
 
 [node name="Graphics" type="Sprite2D" parent="." unique_id=18194606]
+material = SubResource("ShaderMaterial_dwsv8")
 texture = ExtResource("3_cgdry")
+script = ExtResource("4_dwsv8")
 
 [node name="Cooldown" type="Timer" parent="." unique_id=1465622112]
 wait_time = 0.13
@@ -132,11 +141,13 @@ script = ExtResource("12_7umw3")
 
 [node name="StaggerTimer" type="Timer" parent="." unique_id=2096601126]
 wait_time = 0.82
+
 [node name="BombSystem" type="Node2D" parent="." unique_id=1276229262]
 script = ExtResource("13_xty5l")
 
 [connection signal="on_ammo_changed" from="." to="HUD/AmmoLabel" method="update"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="damage_taken" from="HPSystem" to="Graphics" method="hit_flash"]
 [connection signal="on_death" from="HPSystem" to="." method="_on_death"]
 [connection signal="visibility_changed" from="GameOverScreen" to="GameOverScreen" method="_on_visibility_changed"]
 [connection signal="pressed" from="GameOverScreen/GameOverButtons/TryAgainButton" to="GameOverScreen" method="_on_button_pressed"]

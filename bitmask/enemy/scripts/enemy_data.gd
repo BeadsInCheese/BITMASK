@@ -10,7 +10,7 @@ extends Resource
 @export var accel: float = 1
 @export var texture: Texture2D
 @export var bullet_dmg: float
-@export_enum("Ranged", "Melee", "Stationary")
+@export_enum("Probe", "Seeker", "Database", "Ocre", "Exterminator", "Guardian")
 var behavior_type: int
 @export var required_to_destroy: bool = false
 

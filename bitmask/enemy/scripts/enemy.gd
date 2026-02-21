@@ -34,7 +34,7 @@ func _ready() -> void:
 func on_collision(body, normal):
 	if body.has_method("take_damage"):
 		body.take_damage(stats.ce)
-		set_collision_mask_value(3,false)
+		set_collision_mask_value(3, false)
 
 
 func apply_force(knock_back: Vector2):
@@ -42,51 +42,63 @@ func apply_force(knock_back: Vector2):
 
 
 func _physics_process(delta: float) -> void:
-	var space_state = get_world_2d().direct_space_state
-	if !player:
-		return
-	if stats.behavior_type == 2: # stationary
-		return
-
-	if (player.position - global_position).length() > 360:
-		set_collision_mask_value(3,true)
-
-	velocity = target - global_position
-	var query = PhysicsRayQueryParameters2D.create(global_position, 50*velocity.normalized())
-	query.exclude = [self]
-	var results = space_state.intersect_ray(query)
-	
-	while velocity.length() < 0.5 && results.is_empty():
-		reroll_target()
-		velocity = target - global_position
-		query = PhysicsRayQueryParameters2D.create(global_position, 50*velocity.normalized())
-		query.exclude = [self]
-		results = space_state.intersect_ray(query)
-	
-	move_and_collide(velocity.normalized()*delta*70)
-
-	if (player.position-global_position).length() < 550:
-		$NavigationAgent2D.target_position = player.position
-	
-		if $NavigationAgent2D.is_navigation_finished():
-			return
-	
-		var next_path = $NavigationAgent2D.get_next_path_position()
-		var direction = (next_path - position).normalized()
-	
-		var accel = stats.accel * max(speed - max(movement_force.normalized().dot(direction), 0) * movement_force.length(), 0)
-	
-		movement_force += direction * accel
-	
-		velocity = movement_force
-		movement_force = movement_force * 0.9
-		move_and_slide()
-	
+	if $AINode.charging: #while this enemy is performing charge, only generate collisions
 		for i in get_slide_collision_count():
 			var collision_info = get_slide_collision(i)
 			#print("Collided with: ", collision.get_collider().name)
 			if (collision_info && collision_info.get_collider() is Player):
 				on_collision(collision_info.get_collider(), collision_info.get_normal())
+		return
+	if $AINode.bursting: #while this enemy is performing burst/beam attack, stop moving
+		return
+	if !player:
+		return
+	if stats.behavior_type == 2: # stationary
+		return
+
+	var space_state = get_world_2d().direct_space_state
+	#prevent enemies getting stuck to player when player moves
+	if (player.position - global_position).length() > 360: #preliminary, the value depends on enemy size
+		set_collision_mask_value(3, true)
+	else:
+		set_collision_mask_value(3, false)
+
+	#if (player.position-global_position).length() > 200:
+	##navigation
+	$NavigationAgent2D.target_position = player.position
+	if $NavigationAgent2D.is_navigation_finished():
+		return
+	var next_path = $NavigationAgent2D.get_next_path_position()
+	var direction = (next_path - position).normalized()
+	var accel = stats.accel * max(speed - max(movement_force.normalized().dot(direction), 0) * movement_force.length(), 0)
+	movement_force += direction * accel
+	velocity = movement_force
+	movement_force = movement_force * 0.9
+	move_and_slide()
+
+	##random patrol
+	#else:
+	#velocity = target - global_position
+	#var query = PhysicsRayQueryParameters2D.create(global_position, 50*velocity.normalized())
+	#query.exclude = [self]
+	#var results = space_state.intersect_ray(query)
+	#
+	#while velocity.length() < 0.5 && results.is_empty():
+	#reroll_target()
+	#velocity = target - global_position
+	#query = PhysicsRayQueryParameters2D.create(global_position, 50*velocity.normalized())
+	#query.exclude = [self]
+	#results = space_state.intersect_ray(query)
+	#
+	##move_and_slide()
+	#move_and_collide(velocity.normalized()*delta*70)
+
+	##aoe attack
+	#for i in get_slide_collision_count():
+	#var collision_info = get_slide_collision(i)
+	##print("Collided with: ", collision.get_collider().name)
+	#if (collision_info && collision_info.get_collider() is Player):
+	#on_collision(collision_info.get_collider(), collision_info.get_normal())
 
 
 func take_damage(f: float):
@@ -102,8 +114,10 @@ func apply_status(status):
 func modify_speed(multiplier):
 	speed *= multiplier
 
+
 func reroll_target():
-	target = Vector2(randi_range(global_position.x-250,global_position.x+250),randi_range(global_position.y-250,global_position.y+250))
+	target = Vector2(randi_range(global_position.x - 250, global_position.x + 250), randi_range(global_position.y - 250, global_position.y + 250))
+
 
 func drop_item(item):
 	var item_instance = item_base.instantiate()

@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var scene_to_spawn: PackedScene
-@export_range(0.0, 100.0, 0.1) var wait_time = 5.0
+@export_range(0.0, 100.0, 0.1) var wait_time = 15.0
 
 var max_enemies = 30
 

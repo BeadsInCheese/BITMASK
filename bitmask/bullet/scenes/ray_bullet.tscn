@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cafshbc5sj3q7" path="res://bullet/scripts/ray_attack.gd" id="1_72an2"]
 [ext_resource type="PackedScene" uid="uid://cn0rl0agqvtm4" path="res://enemy/gfx/enemy_cpu_particles_2d.tscn" id="2_yqrc2"]
-[ext_resource type="Texture2D" uid="uid://dbbseupbjexqj" path="res://bullet/gfx/ray_orange.png" id="3_nsxwt"]
+[ext_resource type="Texture2D" uid="uid://dsctl2sawn77y" path="res://bullet/gfx/probe_bullet.png" id="3_nsxwt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6d3rq"]
 

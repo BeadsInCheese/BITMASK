@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://dhjhp6mf600fb" path="res://enemy/scripts/surveyor_ai.gd" id="9_ap7oy"]
 [ext_resource type="Script" uid="uid://wdcslwxod72y" path="res://status_effects/scripts/status_system.gd" id="9_mgbwo"]
 [ext_resource type="PackedScene" uid="uid://bu16ih3kf8my3" path="res://bullet/scenes/ray_bullet.tscn" id="10_ap7oy"]
+[ext_resource type="PackedScene" uid="uid://beodu512ii22e" path="res://bullet/scenes/beam_bullet.tscn" id="11_lk8xc"]
+[ext_resource type="PackedScene" uid="uid://dfc0n6bgolnek" path="res://bullet/scenes/guardian_orb.tscn" id="12_qoqyn"]
+[ext_resource type="PackedScene" uid="uid://55u8y6qfqyyt" path="res://bullet/scenes/hacking_bullet.tscn" id="13_gpr0l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mgbwo"]
 resource_local_to_scene = true
@@ -50,6 +53,9 @@ script = ExtResource("9_mgbwo")
 [node name="AINode" type="Node2D" parent="." unique_id=1668576389]
 script = ExtResource("9_ap7oy")
 bullet_base = ExtResource("10_ap7oy")
+beam_base = ExtResource("11_lk8xc")
+orb_base = ExtResource("12_qoqyn")
+hacker_bullet_base = ExtResource("13_gpr0l")
 
 [node name="CooldownTimer" type="Timer" parent="AINode" unique_id=1754444864]
 wait_time = 7.0
@@ -60,6 +66,18 @@ wait_time = 5.0
 [node name="Timer" type="Timer" parent="AINode" unique_id=1131899539]
 wait_time = 0.26
 autostart = true
+
+[node name="ChargeCooldown" type="Timer" parent="AINode" unique_id=1857881837]
+wait_time = 1.725
+one_shot = true
+
+[node name="ChargeTimer" type="Timer" parent="AINode" unique_id=1597509163]
+wait_time = 2.242
+one_shot = true
+
+[node name="BeamCooldown" type="Timer" parent="AINode" unique_id=1040702896]
+wait_time = 5.0
+one_shot = true
 
 [node name="HPBar" type="ProgressBar" parent="." unique_id=533674383]
 visible = false
@@ -83,4 +101,6 @@ autostart = true
 [connection signal="timeout" from="AINode/CooldownTimer" to="AINode" method="_on_cooldown_timer_timeout"]
 [connection signal="timeout" from="AINode/ShootTimer" to="AINode" method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="AINode/Timer" to="AINode" method="_on_timer_timeout"]
+[connection signal="timeout" from="AINode/ChargeCooldown" to="AINode" method="_on_charge_cooldown_timeout"]
+[connection signal="timeout" from="AINode/ChargeTimer" to="AINode" method="_on_charge_timer_timeout"]
 [connection signal="timeout" from="PosTimer" to="." method="_on_pos_timer_timeout"]

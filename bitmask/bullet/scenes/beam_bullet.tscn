@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://beodu512ii22e"]
+
+[ext_resource type="Texture2D" uid="uid://okyrp1qkxwtr" path="res://bullet/gfx/beam.png" id="1_p3udx"]
+[ext_resource type="Script" uid="uid://cafshbc5sj3q7" path="res://bullet/scripts/ray_attack.gd" id="1_rqqvm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rqqvm"]
+radius = 17.117243
+
+[node name="BeamBullet" type="CharacterBody2D" unique_id=1629057802]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_rqqvm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1110943538]
+shape = SubResource("CircleShape2D_rqqvm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=551311744]
+scale = Vector2(0.365, 0.365)
+texture = ExtResource("1_p3udx")
+
+[node name="Lifetimer" type="Timer" parent="." unique_id=217782193]
+wait_time = 2.255
+
+[connection signal="timeout" from="Lifetimer" to="." method="_on_timer_timeout"]

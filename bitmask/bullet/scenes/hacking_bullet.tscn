@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://55u8y6qfqyyt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hk8eq"]
+radius = 14.007925
+height = 69.99753
+
+[node name="HackingBullet" type="RigidBody2D" unique_id=463844515]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1486836010]
+rotation = -1.5792161
+shape = SubResource("CapsuleShape2D_hk8eq")
+
+[node name="Label" type="Label" parent="." unique_id=53370027]
+offset_left = -31.54
+offset_top = -11.0
+offset_right = 40.46
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0.27300826, 0.95640045, 0.80741876, 1)
+text = "£$%_$£@"

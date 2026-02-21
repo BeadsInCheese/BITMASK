@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dfc0n6bgolnek"]
+
+[node name="GuardianOrb" type="RigidBody2D" unique_id=1286530475]
