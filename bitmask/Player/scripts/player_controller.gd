@@ -86,6 +86,10 @@ func _process(delta: float) -> void:
 		global_rotation = lerp_angle(global_rotation, atan2(velocity.y, velocity.x), 20 * delta)
 
 	move_and_slide()
+	for collision_index in get_slide_collision_count():
+		var collision = get_slide_collision(collision_index)
+		if (collision.get_collider() is RigidBody2D):
+			collision.get_collider().apply_central_impulse(-collision.get_normal() * 10)
 	velocity = Vector2(0, 0)
 
 

@@ -3,7 +3,15 @@
 [ext_resource type="Script" uid="uid://bxlcr26xy5djv" path="res://bomb/scripts/bomb.gd" id="1_5x5ra"]
 [ext_resource type="Texture2D" uid="uid://cucnqscccach" path="res://bomb/gfx/bomb.png" id="1_bctmp"]
 
-[node name="Bomb" type="Node2D" unique_id=1579089054]
+[sub_resource type="CircleShape2D" id="CircleShape2D_5x5ra"]
+radius = 17.0
+
+[node name="Bomb" type="RigidBody2D" unique_id=1387042929]
+collision_layer = 15
+collision_mask = 15
+mass = 1.089
+gravity_scale = 0.0
+linear_damp = 0.001
 script = ExtResource("1_5x5ra")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=998616962]
@@ -12,5 +20,8 @@ texture = ExtResource("1_bctmp")
 [node name="Timer" type="Timer" parent="." unique_id=1254297837]
 wait_time = 3.0549999999999997
 autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1796450258]
+shape = SubResource("CircleShape2D_5x5ra")
 
 [connection signal="timeout" from="Timer" to="." method="explode"]
