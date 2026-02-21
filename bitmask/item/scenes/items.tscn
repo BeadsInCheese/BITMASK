@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dl76ddrhddm4c"]
 
 [ext_resource type="Script" uid="uid://dhowxp3quskyb" path="res://item/scripts/items.gd" id="1_sogf3"]
+[ext_resource type="AudioStream" uid="uid://utbx0ov4wagk" path="res://item/sfx/powerup.wav" id="2_bi3wd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bi3wd"]
 
@@ -17,5 +18,9 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2106712820]
 shape = SubResource("CircleShape2D_bi3wd")
+
+[node name="Sfx" type="AudioStreamPlayer2D" parent="." unique_id=1864605023]
+stream = ExtResource("2_bi3wd")
+bus = &"sfx"
 
 [connection signal="body_entered" from="Area2D" to="." method="accuire"]

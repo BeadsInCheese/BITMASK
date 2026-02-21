@@ -14,7 +14,7 @@ default_font = ExtResource("6_kgjhk")
 radius = 905.4943
 
 [node name="Bullet" type="CharacterBody2D" unique_id=701761823]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.4, 0.4)
 collision_layer = 2
 collision_mask = 25
 script = ExtResource("1_ga78h")

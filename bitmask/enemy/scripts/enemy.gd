@@ -74,6 +74,7 @@ func _physics_process(delta: float) -> void:
 	movement_force += direction * accel
 	velocity = movement_force
 	movement_force = movement_force * 0.9
+	$Sprite2D.rotation = lerp_angle($Sprite2D.rotation, atan2(velocity.y, velocity.x), 20 * delta)
 	move_and_slide()
 
 	##random patrol
@@ -113,7 +114,6 @@ func apply_status(status):
 
 func modify_speed(multiplier):
 	speed *= multiplier
-
 
 func reroll_target():
 	target = Vector2(randi_range(global_position.x - 250, global_position.x + 250), randi_range(global_position.y - 250, global_position.y + 250))

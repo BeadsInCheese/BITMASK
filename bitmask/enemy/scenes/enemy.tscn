@@ -45,6 +45,7 @@ damage_text_base = ExtResource("6_tbjim")
 script = ExtResource("7_0lfw3")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1384527015]
+navigation_layers = 15
 radius = 16.0
 
 [node name="StatusSystem" type="Node" parent="." unique_id=1600572096]

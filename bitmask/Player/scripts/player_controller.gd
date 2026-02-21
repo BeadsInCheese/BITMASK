@@ -76,13 +76,20 @@ func _process(delta: float) -> void:
 		shoot(-(global_position - get_global_mouse_position()).normalized())
 	if Input.is_action_pressed("reload"):
 		reload()
-	velocity += Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
+	velocity = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
 	shoot_dir += Vector2(Input.get_axis("shoot_left", "shoot_right"), Input.get_axis("shoot_up", "shoot_down"))
 	if (shoot_dir.length_squared() > 0):
 		shoot(shoot_dir.normalized())
 
-	velocity = velocity.normalized() * speed
+	velocity = velocity.limit_length(1) * speed
+	if abs(velocity.x) > 0 or abs(velocity.y) > 0:
+		global_rotation = lerp_angle(global_rotation, atan2(velocity.y, velocity.x), 20 * delta)
+
 	move_and_slide()
+	for collision_index in get_slide_collision_count():
+		var collision = get_slide_collision(collision_index)
+		if (collision.get_collider() is RigidBody2D):
+			collision.get_collider().apply_central_impulse(-collision.get_normal() * 10)
 	velocity = Vector2(0, 0)
 
 
@@ -110,3 +117,12 @@ func _on_death() -> void:
 func _on_stagger_timer_timeout() -> void:
 	stagger_cooldown = false
 	$StaggerTimer.stop()
+
+
+func display_item_accuired(name: String, description: String):
+	$HUD/ItemText.visible = true
+	$HUD/ItemText.text = "You got " + name + "\n" + description
+	await get_tree().create_timer(3).timeout
+	$HUD/ItemText.visible = false
+
+	pass
