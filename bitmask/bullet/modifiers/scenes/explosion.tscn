@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dkw8krk2e8taq" path="res://bullet/modifiers/scripts/bullet_modifier.gd" id="2_1myla"]
 [ext_resource type="Texture2D" uid="uid://ccbrdhm7uepwr" path="res://bullet/gfx/particle.png" id="2_6p0c7"]
 [ext_resource type="Script" uid="uid://cik6mfbjhxb08" path="res://bullet/modifiers/scripts/damage.gd" id="3_1myla"]
+[ext_resource type="AudioStream" uid="uid://cld1ou0ch3k4g" path="res://bomb/sfx/8bit_bomb_explosion.wav" id="5_p02s4"]
 
 [sub_resource type="Resource" id="Resource_p02s4"]
 script = ExtResource("3_1myla")
@@ -49,6 +50,11 @@ process_material = SubResource("ParticleProcessMaterial_p02s4")
 [node name="Timer" type="Timer" parent="." unique_id=340941750]
 wait_time = 0.2
 autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1008271867]
+stream = ExtResource("5_p02s4")
+autoplay = true
+bus = &"sfx"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
