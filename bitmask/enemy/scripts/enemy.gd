@@ -8,7 +8,7 @@ var player
 #var has_target = true
 var loot_table: LootTable
 signal destroyed
-
+var explosion = load("res://bullet/modifiers/scenes/explosion.tscn")
 var item_base = preload("res://item/scenes/items.tscn")
 var target = Vector2()
 var movement_force = Vector2()
@@ -42,6 +42,11 @@ func apply_force(knock_back: Vector2):
 
 
 func _physics_process(delta: float) -> void:
+	if stats.behavior_type == 1 and (player.global_position - global_position).length() < 50:
+		var explosion_instance = explosion.instantiate()
+		get_parent().add_child(explosion_instance)
+		explosion_instance.global_position = global_position
+		$HPSystem.take_damage(10000000000)
 	if $AINode.charging: #while this enemy is performing charge, only generate collisions
 		for i in get_slide_collision_count():
 			var collision_info = get_slide_collision(i)
@@ -58,7 +63,7 @@ func _physics_process(delta: float) -> void:
 
 	var space_state = get_world_2d().direct_space_state
 	#prevent enemies getting stuck to player when player moves
-	if (player.position - global_position).length() > 360: #preliminary, the value depends on enemy size
+	if (player.global_position - global_position).length() > 120: #preliminary, the value depends on enemy size
 		set_collision_mask_value(3, true)
 	else:
 		set_collision_mask_value(3, false)
@@ -114,6 +119,7 @@ func apply_status(status):
 
 func modify_speed(multiplier):
 	speed *= multiplier
+
 
 func reroll_target():
 	target = Vector2(randi_range(global_position.x - 250, global_position.x + 250), randi_range(global_position.y - 250, global_position.y + 250))
