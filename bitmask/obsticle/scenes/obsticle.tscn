@@ -19,3 +19,10 @@ shape = SubResource("RectangleShape2D_ki34v")
 position = Vector2(-9.536743e-07, -0.9999995)
 scale = Vector2(0.24999999, 0.25000003)
 texture = ExtResource("1_348md")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." unique_id=901406564]
+radius = 26.63
+vertices = PackedVector2Array(16, 15, -16, 15, -16, -17, 16, -17)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+avoidance_layers = 15

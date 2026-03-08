@@ -33,7 +33,8 @@ script = ExtResource("1_e77ja")
 modifiers = Array[ExtResource("2_1myla")]([SubResource("Resource_p02s4")])
 
 [node name="Area2D" type="Area2D" parent="." unique_id=92592415]
-collision_mask = 8
+collision_layer = 15
+collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1828937729]
 shape = SubResource("CircleShape2D_1myla")
@@ -41,7 +42,7 @@ shape = SubResource("CircleShape2D_1myla")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1822852265]
 amount = 17
 texture = ExtResource("2_6p0c7")
-lifetime = 0.2
+lifetime = 0.67
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_p02s4")
 
