@@ -12,8 +12,9 @@ var databases_to_kill = 0
 func _ready() -> void:
 	player.position = spawnpoint.position
 	for child in get_children():
-		if child is Enemy and child.stats.required_to_destroy:
-			databases_to_kill += 1
+		for grand_child in child.get_children():
+			if grand_child is Enemy and grand_child.stats.required_to_destroy:
+				databases_to_kill += 1
 
 	if next_level == null:
 		player.find_child("TimeLabel").running = false
