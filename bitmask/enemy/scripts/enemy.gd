@@ -43,11 +43,6 @@ func apply_force(knock_back: Vector2):
 
 func _physics_process(delta: float) -> void:
 	if $AINode.charging: #while this enemy is performing charge, only generate collisions
-		for i in get_slide_collision_count():
-			var collision_info = get_slide_collision(i)
-			#print("Collided with: ", collision.get_collider().name)
-			if (collision_info && collision_info.get_collider() is Player):
-				on_collision(collision_info.get_collider(), collision_info.get_normal())
 		return
 	if $AINode.bursting: #while this enemy is performing burst/beam attack, stop moving
 		return
@@ -56,16 +51,24 @@ func _physics_process(delta: float) -> void:
 	if stats.behavior_type == 2: # stationary
 		return
 
-	var space_state = get_world_2d().direct_space_state
 	#prevent enemies getting stuck to player when player moves
-	if (player.position - global_position).length() > 360: #preliminary, the value depends on enemy size
+	if (player.global_position - global_position).length() > 120: #preliminary, the value depends on enemy size
 		set_collision_mask_value(3, true)
 	else:
 		set_collision_mask_value(3, false)
-
-	#if (player.position-global_position).length() > 200:
+		
+	print((player.position-global_position).length())
 	##navigation
-	$NavigationAgent2D.target_position = player.position
+	if (player.position-global_position).length() > 200:
+	
+		$NavigationAgent2D.target_position = player.position
+		
+	else:
+		##random patrol
+		if (target - player.global_position).length() > 200 || (global_position - target).length() < 100:
+			reroll_target()
+		$NavigationAgent2D.target_position = target
+		
 	if $NavigationAgent2D.is_navigation_finished():
 		return
 	var next_path = $NavigationAgent2D.get_next_path_position()
@@ -76,30 +79,14 @@ func _physics_process(delta: float) -> void:
 	movement_force = movement_force * 0.9
 	$Sprite2D.rotation = lerp_angle($Sprite2D.rotation, atan2(velocity.y, velocity.x), 20 * delta)
 	move_and_slide()
+	
+	#aoe attack
+	for i in get_slide_collision_count():
+		var collision_info = get_slide_collision(i)
+		#print("Collided with: ", collision_info.get_collider().name)
+		if (collision_info && collision_info.get_collider() is Player):
+			on_collision(collision_info.get_collider(), collision_info.get_normal())
 
-	##random patrol
-	#else:
-	#velocity = target - global_position
-	#var query = PhysicsRayQueryParameters2D.create(global_position, 50*velocity.normalized())
-	#query.exclude = [self]
-	#var results = space_state.intersect_ray(query)
-	#
-	#while velocity.length() < 0.5 && results.is_empty():
-	#reroll_target()
-	#velocity = target - global_position
-	#query = PhysicsRayQueryParameters2D.create(global_position, 50*velocity.normalized())
-	#query.exclude = [self]
-	#results = space_state.intersect_ray(query)
-	#
-	##move_and_slide()
-	#move_and_collide(velocity.normalized()*delta*70)
-
-	##aoe attack
-	#for i in get_slide_collision_count():
-	#var collision_info = get_slide_collision(i)
-	##print("Collided with: ", collision.get_collider().name)
-	#if (collision_info && collision_info.get_collider() is Player):
-	#on_collision(collision_info.get_collider(), collision_info.get_normal())
 
 
 func take_damage(f: float):
@@ -116,7 +103,21 @@ func modify_speed(multiplier):
 	speed *= multiplier
 
 func reroll_target():
-	target = Vector2(randi_range(global_position.x - 250, global_position.x + 250), randi_range(global_position.y - 250, global_position.y + 250))
+	var space_state = get_world_2d().direct_space_state
+	var mask = 1
+	var radius = 650
+	var temp = Vector2(randi_range(global_position.x - radius, global_position.x + radius), randi_range(global_position.y - radius, global_position.y + radius))
+	var query = PhysicsRayQueryParameters2D.create(global_position, temp, mask, [self])
+	var results = space_state.intersect_ray(query)
+	
+	while results.size() != 0:
+		temp = Vector2(randi_range(global_position.x - radius, global_position.x + radius), randi_range(global_position.y - radius, global_position.y + radius))
+		query = PhysicsRayQueryParameters2D.create(global_position, temp, mask, [self])
+		results = space_state.intersect_ray(query)
+
+	target = temp
+
+	
 
 
 func drop_item(item):
@@ -136,7 +137,3 @@ func _on_enemy_death() -> void:
 			break
 	destroyed.emit(stats.required_to_destroy)
 	self.queue_free()
-
-
-func _on_pos_timer_timeout() -> void:
-	reroll_target()

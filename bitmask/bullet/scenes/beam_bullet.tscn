@@ -15,7 +15,7 @@ script = ExtResource("1_rqqvm")
 shape = SubResource("CircleShape2D_rqqvm")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=551311744]
-scale = Vector2(0.365, 0.365)
+scale = Vector2(0.16, 0.16)
 texture = ExtResource("1_p3udx")
 
 [node name="Lifetimer" type="Timer" parent="." unique_id=217782193]

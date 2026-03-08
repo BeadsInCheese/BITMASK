@@ -10,7 +10,8 @@ var type = 0
 #@onready var player: CharacterBody2D = $"../Player"
 var is_cooldown = false
 var cooldown = 5
-var burst = 5000
+var max_burst = 800
+var burst = max_burst
 var velocity = Vector2()
 var offset
 var searching = false
@@ -40,7 +41,7 @@ func _ready() -> void:
 	#draw_line(Vector2(0,0)-orth_vec,player_position - global_position-orth_vec,Color.AQUA)
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if get_parent().stats.behavior_type == 2:
 		return
 
@@ -86,7 +87,7 @@ func _process(delta: float) -> void:
 		#results.append(temp)
 
 	#print(results)
-	if results.size() == 0 && !bursting:
+	if results.size() == 0 && !bursting && !charging:
 		player_position = player.global_position
 		if get_parent().stats.behavior_type == 1 && $ChargeCooldown.is_stopped():
 			charging = true
@@ -95,37 +96,52 @@ func _process(delta: float) -> void:
 		elif get_parent().stats.behavior_type == 3 && $BeamCooldown.is_stopped():
 			bursting = true
 
-		#print("line of sight to player!, start chaaarrggiiiinng!!!")
+		#print("line of sight to player!, start chaaarrggiiiinng!111!111!1!!")
 
 	if charging:
-		print($ChargeTimer.time_left)
-		print("charging, ", (player_position - global_position).length(), " ", $ChargeTimer.time_left)
+		#print($ChargeTimer.time_left)
+		#print("charging, ", (player_position - global_position).length(), " ", $ChargeTimer.time_left)
 		if $ChargeTimer.wait_time - $ChargeTimer.time_left < 0.7:
-			get_parent().move_and_collide(delta * 15 * Vector2(randf_range(-10, 10), randf_range(-10, 10)))
+			get_parent().move_and_collide(delta * 9 * Vector2(randf_range(-10, 10), randf_range(-10, 10)))
 		else:
 			if (player_position - global_position).length() < 10:
+				if ($ChargeTimer.wait_time - $ChargeTimer.time_left) / $ChargeTimer.wait_time < 0.3:
+					charging = false
+					$ChargeCooldown.start()
+					print("stopped charging due player proximity!")
+			var dir = (player_position - global_position).normalized()
+			var collision = get_parent().move_and_collide((delta * dir * 740 * sin(PI / (2 * $ChargeTimer.wait_time) * ($ChargeTimer.wait_time - $ChargeTimer.time_left)) ** 6))
+			
+			if collision:
+				if collision.get_collider() is Player:
+					print("Collided with: ", collision.get_collider().name)
+					get_parent().on_collision(collision.get_collider(), collision.get_normal())
 				charging = false
 				$ChargeCooldown.start()
-				print("stopped charging")
-			var dir = (player_position - global_position).normalized()
-			get_parent().move_and_collide(delta * dir * 540 * sin(PI / (2 * $ChargeTimer.wait_time) * ($ChargeTimer.wait_time - $ChargeTimer.time_left)) ** 4)
+				print("stopped charging when first collision occurred!")
+				
+		
+			
 
+	#40, 2.5s
+	#8, 0.5s
 	if bursting:
 		print(burst, " ", int(burst) % 2, " ", burst < 0)
-		burst -= delta * 200
+		burst -= delta * 1200
 		if (int(burst) % 2 == 0):
-			shoot((player_position - global_position).normalized(), beam_base.instantiate(), 450)
+			shoot((player_position - global_position).normalized(), beam_base.instantiate(), 150*(burst + 500)/max_burst, burst)
 		if burst < 0:
-			burst = 5000
+			burst = max_burst
 			bursting = false
 			$BeamCooldown.start()
 
-
-func shoot(direction, bullet, speed):
+func shoot(direction, bullet, speed, burst=0):
 	bullet.global_position = global_position + direction * shoot_offset
 	bullet.direction = direction
 	bullet.damage = get_parent().stats.bullet_dmg
 	bullet.speed = speed
+	if burst != 0:
+		bullet.life_time = 1.255 * burst/max_burst
 	get_tree().root.get_node("game").get_child(0).add_child(bullet)
 
 
