@@ -20,7 +20,9 @@ func _ready() -> void:
 	$Sprite2D.texture = stats.texture
 	speed = stats.speed
 	loot_table = stats.loot_table
-	var parent = find_parent("Level")
+	var parent = get_parent()
+	if parent:
+		parent = parent.get_parent()
 	if parent and parent.has_method("_on_enemy_destroyed"):
 		destroyed.connect(parent._on_enemy_destroyed)
 
