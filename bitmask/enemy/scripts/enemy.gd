@@ -8,7 +8,7 @@ var player
 #var has_target = true
 var loot_table: LootTable
 signal destroyed
-
+var explosion = load("res://bullet/modifiers/scenes/explosion.tscn")
 var item_base = preload("res://item/scenes/items.tscn")
 var target = Vector2()
 var movement_force = Vector2()
@@ -21,6 +21,8 @@ func _ready() -> void:
 	speed = stats.speed
 	loot_table = stats.loot_table
 	var parent = get_parent()
+	if parent:
+		parent = parent.get_parent()
 	if parent and parent.has_method("_on_enemy_destroyed"):
 		destroyed.connect(parent._on_enemy_destroyed)
 
@@ -42,6 +44,11 @@ func apply_force(knock_back: Vector2):
 
 
 func _physics_process(delta: float) -> void:
+	if stats.behavior_type == 1 and (player.global_position - global_position).length() < 50:
+		var explosion_instance = explosion.instantiate()
+		get_parent().add_child(explosion_instance)
+		explosion_instance.global_position = global_position
+		$HPSystem.take_damage(10000000000)
 	if $AINode.charging: #while this enemy is performing charge, only generate collisions
 		return
 	if $AINode.bursting: #while this enemy is performing burst/beam attack, stop moving
@@ -101,6 +108,7 @@ func apply_status(status):
 
 func modify_speed(multiplier):
 	speed *= multiplier
+
 
 func reroll_target():
 	var space_state = get_world_2d().direct_space_state

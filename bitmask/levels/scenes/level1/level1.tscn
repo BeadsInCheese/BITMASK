@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://k7deqhlp3ab1"]
+
+[ext_resource type="Script" uid="uid://bsvqatjg2lc4v" path="res://levels/scripts/level.gd" id="1_5tise"]
+[ext_resource type="PackedScene" uid="uid://dd0wcn1rdfdog" path="res://levels/scenes/level2/level2.tscn" id="2_ggx4v"]
+[ext_resource type="PackedScene" uid="uid://c1wgoeyd0vhfa" path="res://levels/scenes/level1/area1.tscn" id="3_yj6oe"]
+[ext_resource type="PackedScene" uid="uid://bl273nxhsfrbp" path="res://levels/scenes/level1/area2.tscn" id="4_7xjlx"]
+
+[node name="Level" type="Node2D" unique_id=373504876]
+script = ExtResource("1_5tise")
+next_level = ExtResource("2_ggx4v")
+
+[node name="Spawnpoint" type="Node2D" parent="." unique_id=2647023]
+position = Vector2(397, 238)
+
+[node name="Area1" parent="." unique_id=1078645952 instance=ExtResource("3_yj6oe")]
+
+[node name="Door" parent="Area1" index="9" unique_id=1108709994 node_paths=PackedStringArray("next_area")]
+next_area = NodePath("../../Area2")
+
+[node name="Area2" parent="." unique_id=45690852 instance=ExtResource("4_7xjlx")]
+visible = false
+position = Vector2(0, -384)
+
+[editable path="Area1"]
+[editable path="Area1/Door"]
+[editable path="Area2"]

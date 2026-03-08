@@ -8,7 +8,7 @@ var max_enemies = 30
 var enemy_resources = {
 	"probe": preload("res://enemy/scripts/probe.tres"),
 	"surveyor": preload("res://enemy/scripts/surveyor.tres"),
-	"ocre": preload("res://enemy/scripts/ocre.tres")
+	"ocre": preload("res://enemy/scripts/ocre.tres"),
 }
 
 
@@ -36,4 +36,4 @@ func _on_timer_timeout() -> void:
 		var random_enemy = enemy_resources[random_key]
 		scene.stats = random_enemy
 	scene.position = position
-	get_parent().add_child(scene)
+	get_parent().add_sibling(scene)

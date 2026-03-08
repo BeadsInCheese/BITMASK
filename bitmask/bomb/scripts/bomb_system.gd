@@ -18,7 +18,7 @@ func drop_bomb():
 		return
 	current_bombs -= 1
 	var bomb_instance = bomb_prefab.instantiate()
-	bomb_instance.global_position = global_position
+	bomb_instance.global_position = global_position - Vector2(0, -50)
 	get_tree().root.get_node("game").get_child(0).call_deferred("add_child", bomb_instance)
 
 

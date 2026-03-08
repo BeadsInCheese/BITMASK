@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dd0wcn1rdfdog"]
+
+[ext_resource type="Script" uid="uid://bsvqatjg2lc4v" path="res://levels/scripts/level.gd" id="1_3pemg"]
+[ext_resource type="PackedScene" uid="uid://cgl7h5gmrv1r2" path="res://levels/scenes/level3/level3.tscn" id="2_wjkrl"]
+[ext_resource type="PackedScene" uid="uid://dmxwifs6aylv7" path="res://levels/scenes/level2/area1.tscn" id="3_2v62c"]
+
+[node name="Level" type="Node2D" unique_id=373504876]
+script = ExtResource("1_3pemg")
+next_level = ExtResource("2_wjkrl")
+
+[node name="Spawnpoint" type="Node2D" parent="." unique_id=2647023]
+position = Vector2(486, 1011)
+
+[node name="Area1" parent="." unique_id=229288867 instance=ExtResource("3_2v62c")]
