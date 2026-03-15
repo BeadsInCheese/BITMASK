@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://2xso7vwdw51j"]
+
+[ext_resource type="Script" uid="uid://bkvjgnagnh1dm" path="res://levels/scripts/level_generator.gd" id="1_qtso6"]
+[ext_resource type="Script" uid="uid://cr1jbj0fqtg1l" path="res://levels/scripts/door_data.gd" id="2_7ng52"]
+[ext_resource type="Script" uid="uid://cx11pshoe31q6" path="res://levels/scripts/area_data.gd" id="2_n5qvv"]
+
+[sub_resource type="Resource" id="Resource_povpc"]
+script = ExtResource("2_7ng52")
+metadata/_custom_type_script = "uid://cr1jbj0fqtg1l"
+
+[sub_resource type="Resource" id="Resource_3mn3x"]
+script = ExtResource("2_7ng52")
+door_dir = 1
+metadata/_custom_type_script = "uid://cr1jbj0fqtg1l"
+
+[sub_resource type="Resource" id="Resource_l1hou"]
+script = ExtResource("2_n5qvv")
+area_size = Vector2i(2, 1)
+doors = Array[ExtResource("2_7ng52")]([SubResource("Resource_povpc"), SubResource("Resource_3mn3x")])
+metadata/_custom_type_script = "uid://cx11pshoe31q6"
+
+[sub_resource type="Resource" id="Resource_xdnow"]
+script = ExtResource("2_7ng52")
+door_dir = 2
+metadata/_custom_type_script = "uid://cr1jbj0fqtg1l"
+
+[sub_resource type="Resource" id="Resource_dlugw"]
+script = ExtResource("2_7ng52")
+door_dir = 1
+metadata/_custom_type_script = "uid://cr1jbj0fqtg1l"
+
+[sub_resource type="Resource" id="Resource_1r7gb"]
+script = ExtResource("2_n5qvv")
+doors = Array[ExtResource("2_7ng52")]([SubResource("Resource_xdnow"), SubResource("Resource_dlugw")])
+metadata/_custom_type_script = "uid://cx11pshoe31q6"
+
+[sub_resource type="Resource" id="Resource_yfy88"]
+script = ExtResource("2_7ng52")
+metadata/_custom_type_script = "uid://cr1jbj0fqtg1l"
+
+[sub_resource type="Resource" id="Resource_75dyb"]
+script = ExtResource("2_7ng52")
+door_dir = 2
+metadata/_custom_type_script = "uid://cr1jbj0fqtg1l"
+
+[sub_resource type="Resource" id="Resource_xp56i"]
+script = ExtResource("2_n5qvv")
+doors = Array[ExtResource("2_7ng52")]([SubResource("Resource_yfy88"), SubResource("Resource_75dyb")])
+metadata/_custom_type_script = "uid://cx11pshoe31q6"
+
+[sub_resource type="Resource" id="Resource_dyu67"]
+script = ExtResource("2_7ng52")
+metadata/_custom_type_script = "uid://cr1jbj0fqtg1l"
+
+[sub_resource type="Resource" id="Resource_e221b"]
+script = ExtResource("2_7ng52")
+door_dir = 2
+metadata/_custom_type_script = "uid://cr1jbj0fqtg1l"
+
+[sub_resource type="Resource" id="Resource_l4nri"]
+script = ExtResource("2_n5qvv")
+doors = Array[ExtResource("2_7ng52")]([SubResource("Resource_dyu67"), SubResource("Resource_e221b")])
+metadata/_custom_type_script = "uid://cx11pshoe31q6"
+
+[sub_resource type="Resource" id="Resource_sqon1"]
+script = ExtResource("2_7ng52")
+door_dir = 2
+metadata/_custom_type_script = "uid://cr1jbj0fqtg1l"
+
+[sub_resource type="Resource" id="Resource_7ng52"]
+script = ExtResource("2_7ng52")
+door_dir = 3
+metadata/_custom_type_script = "uid://cr1jbj0fqtg1l"
+
+[sub_resource type="Resource" id="Resource_ekt0q"]
+script = ExtResource("2_7ng52")
+door_dir = 1
+metadata/_custom_type_script = "uid://cr1jbj0fqtg1l"
+
+[sub_resource type="Resource" id="Resource_5hq8j"]
+script = ExtResource("2_n5qvv")
+area_size = Vector2i(1, 1)
+doors = Array[ExtResource("2_7ng52")]([SubResource("Resource_sqon1"), SubResource("Resource_7ng52"), SubResource("Resource_ekt0q")])
+metadata/_custom_type_script = "uid://cx11pshoe31q6"
+
+[node name="LevelgenTest" type="Node2D" unique_id=1716046953]
+script = ExtResource("1_qtso6")
+areas = Array[ExtResource("2_n5qvv")]([SubResource("Resource_l1hou"), SubResource("Resource_1r7gb"), SubResource("Resource_xp56i"), SubResource("Resource_l4nri")])
+starting_room = SubResource("Resource_5hq8j")
+box_size = null
