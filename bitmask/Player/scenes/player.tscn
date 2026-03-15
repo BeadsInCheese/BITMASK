@@ -12,7 +12,9 @@
 [ext_resource type="Script" uid="uid://b0kidk2q7wo8j" path="res://Player/scripts/hp_label.gd" id="6_obsiq"]
 [ext_resource type="Script" uid="uid://pnsv1vruhbv5" path="res://common/scripts/hp_system.gd" id="7_r6dbh"]
 [ext_resource type="Script" uid="uid://cn2qfpqmj3vqp" path="res://Player/scripts/time_label.gd" id="8_latqv"]
+[ext_resource type="AudioStream" uid="uid://b3neiqf2kek6v" path="res://Player/sfx/boost.mp3" id="8_s2lx4"]
 [ext_resource type="Script" uid="uid://bxqmhme35bybr" path="res://Player/scripts/game_over_screen.gd" id="9_dy67d"]
+[ext_resource type="AudioStream" uid="uid://wfoggvh57t7s" path="res://Player/sfx/ready.wav" id="9_oh6md"]
 [ext_resource type="Script" uid="uid://wdcslwxod72y" path="res://status_effects/scripts/status_system.gd" id="12_7umw3"]
 [ext_resource type="Script" uid="uid://dllwkpvjpri1l" path="res://bomb/scripts/bomb_system.gd" id="13_xty5l"]
 
@@ -50,6 +52,15 @@ script = ExtResource("4_dwsv8")
 
 [node name="Cooldown" type="Timer" parent="." unique_id=1465622112]
 wait_time = 0.13
+one_shot = true
+
+[node name="DashCooldown" type="Timer" parent="." unique_id=1473232092]
+wait_time = 3.5
+one_shot = true
+
+[node name="DashDuration" type="Timer" parent="." unique_id=169668662]
+wait_time = 0.8
+one_shot = true
 
 [node name="ShootAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=778497090]
 stream = ExtResource("4_ekj7i")
@@ -61,6 +72,16 @@ bus = &"sfx"
 stream = ExtResource("5_nshua")
 volume_db = -5.0
 pitch_scale = 0.85
+bus = &"sfx"
+
+[node name="DashActiveAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=277266134]
+stream = ExtResource("8_s2lx4")
+volume_db = -10.0
+bus = &"sfx"
+
+[node name="DashReadyAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=2070998685]
+stream = ExtResource("9_oh6md")
+volume_db = 1.0
 bus = &"sfx"
 
 [node name="HPSystem" type="Node2D" parent="." unique_id=2093033087]
@@ -162,6 +183,8 @@ script = ExtResource("13_xty5l")
 
 [connection signal="on_ammo_changed" from="." to="HUD/AmmoLabel" method="update"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
+[connection signal="timeout" from="DashDuration" to="." method="_on_dash_duration_timeout"]
 [connection signal="damage_taken" from="HPSystem" to="Graphics" method="hit_flash"]
 [connection signal="on_death" from="HPSystem" to="." method="_on_death"]
 [connection signal="visibility_changed" from="GameOverScreen" to="GameOverScreen" method="_on_visibility_changed"]

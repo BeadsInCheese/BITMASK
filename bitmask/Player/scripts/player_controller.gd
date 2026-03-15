@@ -9,7 +9,12 @@ extends CharacterBody2D
 var upgrades: Array[BulletModifier]
 var current_ammo
 var can_shoot = true
+var can_dash = true
+var dash_active = false
 var stagger_cooldown = false
+
+var shoot_dir: Vector2 = Vector2(0, 0)
+var dash_dir: Vector2 = Vector2(0, 0)
 
 signal on_out_of_ammo
 signal on_ammo_changed(value)
@@ -67,25 +72,44 @@ func shoot(direction: Vector2):
 	$Cooldown.start()
 
 
-var shoot_dir: Vector2 = Vector2(0, 0)
+func init_dash():
+	if not can_dash or dash_active:
+		return
+
+	dash_active = true
+	can_dash = false
+	dash_dir = Vector2.RIGHT.rotated(global_rotation).normalized()
+
+	$DashDuration.start()
+	$DashCooldown.start()
+	$DashActiveAudioPlayer.play()
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	shoot_dir *= 0
 	if Input.is_action_pressed("shoot_mouse"):
 		shoot(-(global_position - get_global_mouse_position()).normalized())
 	if Input.is_action_pressed("reload"):
 		reload()
-	velocity = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
+
 	shoot_dir += Vector2(Input.get_axis("shoot_left", "shoot_right"), Input.get_axis("shoot_up", "shoot_down"))
 	if (shoot_dir.length_squared() > 0):
 		shoot(shoot_dir.normalized())
 
-	velocity = velocity.limit_length(1) * speed
+	velocity = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down")).limit_length(1) * speed
+
+	if Input.is_action_pressed("dash"):
+		init_dash()
+
+	if dash_active:
+		velocity = velocity.normalized() * 100 + (dash_dir * (500 - 200 * ($DashDuration.wait_time - $DashDuration.time_left) / $DashDuration.wait_time))
+		dash_dir = velocity.normalized()
+
 	if abs(velocity.x) > 0 or abs(velocity.y) > 0:
 		global_rotation = lerp_angle(global_rotation, atan2(velocity.y, velocity.x), 20 * delta)
 
 	move_and_slide()
+
 	for collision_index in get_slide_collision_count():
 		var collision = get_slide_collision(collision_index)
 		if (collision.get_collider() is RigidBody2D):
@@ -107,6 +131,15 @@ func take_damage(f: float):
 
 func _on_cooldown_timeout() -> void:
 	can_shoot = true
+
+
+func _on_dash_cooldown_timeout() -> void:
+	can_dash = true
+	$DashReadyAudioPlayer.play()
+
+
+func _on_dash_duration_timeout() -> void:
+	dash_active = false
 
 
 func _on_death() -> void:
