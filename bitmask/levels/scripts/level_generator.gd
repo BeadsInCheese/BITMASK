@@ -23,9 +23,9 @@ func AABB_test(a: Vector2, a_size: Vector2, b: Vector2, b_size: Vector2):
 
 
 func validate(chunk: Chunk):
-	if chunk.pos.y < 0 or chunk.pos.y > 100:
+	if chunk.pos.y < 0 or chunk.pos.y > 50:
 		return false
-	if chunk.pos.x < 0 or chunk.pos.x > 100:
+	if chunk.pos.x < 0 or chunk.pos.x > 50:
 		return false
 	for area in level:
 		if AABB_test(area.pos, area.area.area_size, chunk.pos, chunk.area.area_size):
@@ -95,18 +95,18 @@ func create_room(door_pos, door_dir):
 
 func generate():
 	areas.shuffle()
-	var chunk = Chunk.new(starting_room, Vector2i(50, 50))
+	var chunk = Chunk.new(starting_room, Vector2i(25, 25))
 	level.append(chunk)
 	for door in starting_room.doors:
 		print("creating room...")
-		await create_room(Vector2i(50, 50), door.get_direction_vector())
+		await create_room(chunk.pos, door.get_direction_vector())
 
 
 func draw():
 	var output = ""
 	var tiles = []
-	for i in 100:
-		for j in 100:
+	for i in 50:
+		for j in 50:
 			var found = false
 			for chunk in level:
 				if AABB_test(Vector2i(i, j), Vector2i(1, 1), chunk.pos, chunk.area.area_size):
@@ -127,15 +127,12 @@ var draw_size_half = draw_size / 2
 
 
 func _draw():
-	for i in 100:
-		for j in 100:
-			var found = false
-			for chunk in level:
-				if AABB_test(Vector2i(i, j), Vector2i(1, 1), chunk.pos, chunk.area.area_size):
-					draw_rect(Rect2(i * draw_size, j * draw_size, draw_size, draw_size), Color.GREEN)
-					for door in chunk.area.doors:
-						var center = Vector2(i * draw_size + draw_size_half, j * draw_size + draw_size_half)
-						draw_line(center, center + draw_size_half * Vector2(door.get_direction_vector()), Color.RED)
+	var found = false
+	for chunk in level:
+		draw_rect(Rect2(chunk.pos.x * draw_size, chunk.pos.y * draw_size, draw_size, draw_size), Color.GREEN)
+		for door in chunk.area.doors:
+			var center = Vector2(chunk.pos.x * draw_size + draw_size_half, chunk.pos.y * draw_size + draw_size_half)
+			draw_line(center, center + draw_size_half * Vector2(door.get_direction_vector()), Color.RED)
 
 
 func start():
