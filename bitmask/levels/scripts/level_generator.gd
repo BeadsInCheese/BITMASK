@@ -64,6 +64,9 @@ func validate_doors(chunk):
 
 
 func create_room(door_pos, door_dir):
+	if get_neighbouring_room(door_pos, door_dir) != null:
+		return true
+
 	areas.shuffle()
 	for area in areas:
 		for door in area.doors:
@@ -73,10 +76,21 @@ func create_room(door_pos, door_dir):
 					print("created room at " + str(chunk.pos))
 
 					level.append(chunk)
+					var door_failed = false
 					for chunk_door in chunk.area.doors:
-						create_room(chunk.pos, chunk_door.get_direction_vector())
-					return
+						if !await create_room(chunk.pos, chunk_door.get_direction_vector()):
+							level.pop_back()
+							door_failed = true
+							print("room is unfit for tile")
+							break
+					if door_failed:
+						break
+					queue_redraw()
+					await get_tree().process_frame
+					return true
+
 	printerr("room generation failed")
+	return false
 
 
 func generate():
@@ -85,7 +99,7 @@ func generate():
 	level.append(chunk)
 	for door in starting_room.doors:
 		print("creating room...")
-		create_room(Vector2i(50, 50), door.get_direction_vector())
+		await create_room(Vector2i(50, 50), door.get_direction_vector())
 
 
 func draw():
@@ -120,9 +134,18 @@ func _draw():
 				if AABB_test(Vector2i(i, j), Vector2i(1, 1), chunk.pos, chunk.area.area_size):
 					draw_rect(Rect2(i * draw_size, j * draw_size, draw_size, draw_size), Color.GREEN)
 					for door in chunk.area.doors:
-						draw_rect(Rect2(i * draw_size + draw_size_half + door.get_direction_vector().x * draw_size_half / 2, j * draw_size + draw_size_half + door.get_direction_vector().y * draw_size_half / 2, draw_size / 4, draw_size / 4), Color.BLUE)
+						var center = Vector2(i * draw_size + draw_size_half, j * draw_size + draw_size_half)
+						draw_line(center, center + draw_size_half * Vector2(door.get_direction_vector()), Color.RED)
+
+
+func start():
+	while true:
+		await generate()
+
+		await get_tree().process_frame
+		queue_redraw()
+		level.clear()
 
 
 func _ready() -> void:
-	generate()
-	draw()
+	call_deferred("start")
